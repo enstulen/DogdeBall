@@ -9,81 +9,104 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+
+class GameScene: SKScene, SKPhysicsContactDelegate {
+
+    var player: SKSpriteNode!
+    var player2: SKSpriteNode!
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
-    
-    override func didMove(to view: SKView) {
-        
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
-        
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-        
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
-            
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
-        }
-    }
-    
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
-        
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-    }
+    var initialPlayerPosition: CGPoint!
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+        if let touch = touches.first {
+            let maximumPossibleForce = touch.maximumPossibleForce
+            let force = touch.force
+            let normalizedForce = force/maximumPossibleForce
+            
+            player.position.x = normalizedForce * self.size.width - 25
+
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+        resetPlayerPosition()
     }
     
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+    func resetPlayerPosition() {
+        player.position = initialPlayerPosition
+    }
+    
+    override func didMove(to view: SKView) {
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
+        self.physicsWorld.contactDelegate = self
+        
+        addPlayer()
+        
+    }
+    
+    func addRandomRow() {
+        let randomNumber = Int(arc4random_uniform(6))
+            
+        switch randomNumber {
+        case 0:
+            addRow(type: RowType(rawValue: 0)!)
+            break
+        case 1:
+            addRow(type: RowType(rawValue: 1)!)
+            break
+        case 2:
+            addRow(type: RowType(rawValue: 2)!)
+            break
+        case 3:
+            addRow(type: RowType(rawValue: 3)!)
+            break
+        case 4:
+            addRow(type: RowType(rawValue: 4)!)
+            break
+        case 5:
+            addRow(type: RowType(rawValue: 5)!)
+            break
+        default:
+            break
+        }
+    }
+    
+    
+    var lastUpdateTimeInterval = TimeInterval()
+    var lastYieldTimeInterval = TimeInterval()
+    
+    func updateWithTimeSinceLastUpdate(timeSinceLastUpdate: CFTimeInterval) {
+        lastYieldTimeInterval += timeSinceLastUpdate
+        if lastYieldTimeInterval > 1.5 {
+            lastYieldTimeInterval = 0
+            addRandomRow()
+        }
     }
     
     
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+        var timeSinceLastUpdate = currentTime - lastUpdateTimeInterval
+        lastUpdateTimeInterval = currentTime
+        
+        if timeSinceLastUpdate > 1 {
+            timeSinceLastUpdate = 1/60
+            lastUpdateTimeInterval = currentTime
+        }
+        
+        updateWithTimeSinceLastUpdate(timeSinceLastUpdate: timeSinceLastUpdate)
+        
+        
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        if contact.bodyA.node?.name == "PLAYER" {
+            showGameOver()
+        }
+    }
+    
+    func showGameOver() {
+        let transition = SKTransition.fade(withDuration: 0.5)
+        let gameOverScene = GameOverScene(size: self.size)
+        self.view?.presentScene(gameOverScene, transition: transition)
     }
 }

@@ -17,6 +17,8 @@
 		5A6812D2204D3AA900B1B6BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A6812D0204D3AA900B1B6BE /* LaunchScreen.storyboard */; };
 		5A6812DD204D3AA900B1B6BE /* Dogde_BallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6812DC204D3AA900B1B6BE /* Dogde_BallTests.swift */; };
 		5A6812E8204D3AA900B1B6BE /* Dogde_BallUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6812E7204D3AA900B1B6BE /* Dogde_BallUITests.swift */; };
+		5A6812F6204D3B7000B1B6BE /* GameElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6812F5204D3B7000B1B6BE /* GameElements.swift */; };
+		5A6812F8204D482D00B1B6BE /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6812F7204D482D00B1B6BE /* GameOverScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		5A6812E3204D3AA900B1B6BE /* Dogde BallUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dogde BallUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A6812E7204D3AA900B1B6BE /* Dogde_BallUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dogde_BallUITests.swift; sourceTree = "<group>"; };
 		5A6812E9204D3AA900B1B6BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5A6812F5204D3B7000B1B6BE /* GameElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameElements.swift; sourceTree = "<group>"; };
+		5A6812F7204D482D00B1B6BE /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,8 @@
 				5A6812CE204D3AA900B1B6BE /* Assets.xcassets */,
 				5A6812D0204D3AA900B1B6BE /* LaunchScreen.storyboard */,
 				5A6812D3204D3AA900B1B6BE /* Info.plist */,
+				5A6812F5204D3B7000B1B6BE /* GameElements.swift */,
+				5A6812F7204D482D00B1B6BE /* GameOverScene.swift */,
 			);
 			path = "Dogde Ball";
 			sourceTree = "<group>";
@@ -270,6 +276,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A6812F8204D482D00B1B6BE /* GameOverScene.swift in Sources */,
+				5A6812F6204D3B7000B1B6BE /* GameElements.swift in Sources */,
 				5A6812C8204D3AA900B1B6BE /* GameScene.swift in Sources */,
 				5A6812CA204D3AA900B1B6BE /* GameViewController.swift in Sources */,
 				5A6812C2204D3AA900B1B6BE /* AppDelegate.swift in Sources */,
