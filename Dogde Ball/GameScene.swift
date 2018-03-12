@@ -45,7 +45,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addRandomRow() {
-        let randomNumber = Int(arc4random_uniform(6))
+        let randomNumber = Int(arc4random_uniform(15))
             
         switch randomNumber {
         case 0:
@@ -65,6 +65,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             break
         case 5:
             addRow(type: RowType(rawValue: 5)!)
+            break
+        case 6:
+            addRow(type: RowType(rawValue: 6)!)
+            break
+        case 7:
+            addRow(type: RowType(rawValue: 7)!)
+            break
+        case 8:
+            addRow(type: RowType(rawValue: 8)!)
+            break
+        case 9:
+            addRow(type: RowType(rawValue: 9)!)
+            break
+        case 10:
+            addRow(type: RowType(rawValue: 10)!)
+            break
+        case 11:
+            addRow(type: RowType(rawValue: 11)!)
+            break
+        case 12:
+            addRow(type: RowType(rawValue: 12)!)
+            break
+        case 13:
+            addRow(type: RowType(rawValue: 13)!)
+            break
+        case 14:
+            addRow(type: RowType(rawValue: 14)!)
             break
         default:
             break
