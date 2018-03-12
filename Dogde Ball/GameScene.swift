@@ -10,10 +10,15 @@ import SpriteKit
 import GameplayKit
 
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtocol{
+    func matchEnded() {
+        print("ended")
+    }
+    
 
     var player: SKSpriteNode!
     var player2: SKSpriteNode!
+    var networkingEngine: MultiPlayerNetworking!
     
     var initialPlayerPosition: CGPoint!
     

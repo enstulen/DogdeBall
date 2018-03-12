@@ -20,7 +20,7 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
     var authenticationViewController: UIViewController!
     var lastError: Error!
     
-    var match: GKMatch?
+    var match: GKMatch!
     weak var delegate: GameKitHelperDelegate?
     
     var enableGameCenter = false
@@ -29,6 +29,9 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
     let localPlayerIsAuthenticated = "local_player_authenticated"
     
     var matchStarted = false
+    
+    var playersDict = [String: GKPlayer]()
+
 
     
     static let sharedGameKitHelper = GameKitHelper()
@@ -61,8 +64,42 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
             else {
                 self.enableGameCenter = false
             }
-            }
+        }
     }
+    
+    func lookupPlayers(){
+        let playerIDs = match.players.map { ($0 ).playerID }
+
+        GKPlayer.loadPlayers(forIdentifiers: playerIDs as! [String]) { (players: [GKPlayer]?, error: Error?) in
+            if error != nil {
+                print("Error retrieving player info: \(error?.localizedDescription)")
+                self.matchStarted = false
+                self.delegate?.matchEnded()
+            }
+            else {
+                
+                
+                // Populate players dict
+                for player in players!
+                {
+                    print("Found player: " + player.alias!)
+                    self.playersDict[player.playerID!] = player //use player
+                }
+                
+                self.playersDict[GKLocalPlayer.localPlayer().playerID!] = GKLocalPlayer.localPlayer()
+
+                // Notify delegate match can begin
+                self.matchStarted = true
+                GKMatchmaker.shared().finishMatchmaking(for: self.match)
+                self.delegate?.matchStarted()
+                
+                
+            }
+        }
+
+    }
+    
+    
     
     func setAuthenticationViewController(_ authenticationViewController: UIViewController?) {
         if authenticationViewController != nil {
@@ -97,6 +134,7 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
         match.delegate = self
         if (!matchStarted && match.expectedPlayerCount == 0) {
             print("Ready to start")
+            self.lookupPlayers()
         }
     }
     
@@ -115,7 +153,8 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
         switch state {
         case .stateConnected:
             if (!matchStarted && match.expectedPlayerCount == 0) {
-                print("Ready to start")
+                print("Ready to start match")
+                self.lookupPlayers()
             }
         case .stateDisconnected:
             print("Player disconnected")
