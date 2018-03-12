@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A581B5320568A8D001979E4 /* GameKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A581B5220568A8D001979E4 /* GameKitHelper.swift */; };
 		5A6812C2204D3AA900B1B6BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6812C1204D3AA900B1B6BE /* AppDelegate.swift */; };
 		5A6812C4204D3AA900B1B6BE /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5A6812C3204D3AA900B1B6BE /* GameScene.sks */; };
 		5A6812C6204D3AA900B1B6BE /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5A6812C5204D3AA900B1B6BE /* Actions.sks */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A581B5220568A8D001979E4 /* GameKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKitHelper.swift; sourceTree = "<group>"; };
 		5A6812BE204D3AA900B1B6BE /* Dogde Ball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dogde Ball.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A6812C1204D3AA900B1B6BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A6812C3204D3AA900B1B6BE /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -84,6 +86,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A581B5120568A6B001979E4 /* GameKit */ = {
+			isa = PBXGroup;
+			children = (
+				5A581B5220568A8D001979E4 /* GameKitHelper.swift */,
+			);
+			path = GameKit;
+			sourceTree = "<group>";
+		};
 		5A6812B5204D3AA800B1B6BE = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +117,7 @@
 		5A6812C0204D3AA900B1B6BE /* Dogde Ball */ = {
 			isa = PBXGroup;
 			children = (
+				5A581B5120568A6B001979E4 /* GameKit */,
 				5A6812C1204D3AA900B1B6BE /* AppDelegate.swift */,
 				5A6812C3204D3AA900B1B6BE /* GameScene.sks */,
 				5A6812C5204D3AA900B1B6BE /* Actions.sks */,
@@ -280,6 +291,7 @@
 				5A6812F6204D3B7000B1B6BE /* GameElements.swift in Sources */,
 				5A6812C8204D3AA900B1B6BE /* GameScene.swift in Sources */,
 				5A6812CA204D3AA900B1B6BE /* GameViewController.swift in Sources */,
+				5A581B5320568A8D001979E4 /* GameKitHelper.swift in Sources */,
 				5A6812C2204D3AA900B1B6BE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,12 +458,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A287QAHHVB;
+				DEVELOPMENT_TEAM = R4BG54K3KD;
 				INFOPLIST_FILE = "Dogde Ball/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "stulen.Dogde-Ball";
+				PRODUCT_BUNDLE_IDENTIFIER = "Group3TDT4240.Dogde-Ball";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -461,12 +476,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A287QAHHVB;
+				DEVELOPMENT_TEAM = R4BG54K3KD;
 				INFOPLIST_FILE = "Dogde Ball/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "stulen.Dogde-Ball";
+				PRODUCT_BUNDLE_IDENTIFIER = "Group3TDT4240.Dogde-Ball";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
