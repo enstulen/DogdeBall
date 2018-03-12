@@ -118,11 +118,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func scheduledTimerWithTimeInterval(){
         var timer = Timer()
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
     }
     
     @objc func updateCounting(){
-        score = score + 10
+        score = score + 1
         scoreLabel.text = String(score)
         
     }
