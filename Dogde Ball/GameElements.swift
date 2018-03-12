@@ -39,7 +39,7 @@ extension GameScene {
         player.physicsBody?.categoryBitMask = CollisionBitMask.Player
         player.physicsBody?.collisionBitMask = 0
         player.physicsBody?.contactTestBitMask = CollisionBitMask.Obstacle
-                
+        
         addChild(player)
         
         initialPlayerPosition = player.position
@@ -147,13 +147,13 @@ extension GameScene {
         
     func addScoreLabel(){
         
-        let newLabel = SKLabelNode(text: "0000")
-        newLabel.zPosition = 10
-        newLabel.position = CGPoint(x: 850, y: 1750)
-        newLabel.fontName = "Helvetica"
-        newLabel.fontSize = 70
+        scoreLabel = SKLabelNode(text: "0000")
+        scoreLabel.zPosition = 10
+        scoreLabel.position = CGPoint(x: 850, y: 1750)
+        scoreLabel.fontName = "Helvetica"
+        scoreLabel.fontSize = 70
 
-        addChild(newLabel)
+        addChild(scoreLabel)
     }
 }
 

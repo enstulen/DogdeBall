@@ -12,8 +12,10 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
 
+    var score: Int = 0
     var player: SKSpriteNode!
     var player2: SKSpriteNode!
+    var scoreLabel: SKLabelNode!
     
     var initialPlayerPosition: CGPoint!
     
@@ -24,6 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let normalizedForce = force/maximumPossibleForce
             
             player.position.x = normalizedForce * self.size.width - 25
+            
 
         }
     }
@@ -42,6 +45,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         addScoreLabel()
         addPlayer()
+        
+        scheduledTimerWithTimeInterval()
         
     }
     
@@ -109,4 +114,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let gameOverScene = GameOverScene(size: self.size)
         self.view?.presentScene(gameOverScene, transition: transition)
     }
+    
+    func scheduledTimerWithTimeInterval(){
+        var timer = Timer()
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateCounting(){
+        score = score + 10
+        scoreLabel.text = String(score)
+        
+    }
+    
 }
