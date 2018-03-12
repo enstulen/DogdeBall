@@ -150,7 +150,7 @@ extension GameScene {
         scoreLabel = SKLabelNode(text: "0000")
         scoreLabel.zPosition = 10
         scoreLabel.position = CGPoint(x: 850, y: 1750)
-        scoreLabel.fontName = "Helvetica"
+        scoreLabel.fontName = "Optima-ExtraBlack"
         scoreLabel.fontSize = 70
 
         addChild(scoreLabel)
