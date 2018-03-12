@@ -14,7 +14,7 @@ class GameOverScene: SKScene {
         super.init(coder: aDecoder)
     }
     
-    override init(size: CGSize) {
+    init(size: CGSize, score: Int) {
         super.init(size: size)
         
         self.backgroundColor = SKColor.black
@@ -25,6 +25,12 @@ class GameOverScene: SKScene {
         label.fontColor = SKColor.white
         label.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
         addChild(label)
+        
+        let scoreLabel = SKLabelNode(fontNamed: "Optima-ExtraBlack")
+        scoreLabel.text = "Score: " + String(score)
+        scoreLabel.fontColor = SKColor.white
+        scoreLabel.position = CGPoint(x: self.size.width/2, y: self.size.height/3)
+        addChild(scoreLabel)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
