@@ -78,8 +78,6 @@ extension GameScene {
         obstacle.run(SKAction.sequence(actionArray))
     }
     
-    
-    
     func addRow(type: RowType) {
         switch type {
         case .oneS:
@@ -146,33 +144,16 @@ extension GameScene {
             break
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-}
+        
+    func addScoreLabel(){
+        
+        let newLabel = SKLabelNode(text: "0000")
+        newLabel.zPosition = 10
+        newLabel.position = CGPoint(x: 850, y: 1750)
+        newLabel.fontName = "Helvetica"
+        newLabel.fontSize = 70
 
+        addChild(newLabel)
+    }
+}
 

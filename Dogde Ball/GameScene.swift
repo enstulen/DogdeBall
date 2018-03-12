@@ -40,6 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self
         
+        addScoreLabel()
         addPlayer()
         
     }
@@ -87,7 +88,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         var timeSinceLastUpdate = currentTime - lastUpdateTimeInterval
         lastUpdateTimeInterval = currentTime
-        
         if timeSinceLastUpdate > 1 {
             timeSinceLastUpdate = 1/60
             lastUpdateTimeInterval = currentTime
