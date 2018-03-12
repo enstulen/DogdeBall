@@ -148,9 +148,10 @@ extension GameScene {
         
     func addScoreLabel(){
         
-        scoreLabel = SKLabelNode(text: "0000")
+        scoreLabel = SKLabelNode(text: "0")
         scoreLabel.zPosition = 10
-        scoreLabel.position = CGPoint(x: 850, y: 1750)
+        scoreLabel.position = CGPoint(x: 0.9*self.size.width, y: 0.9*self.size.height)
+        scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
         scoreLabel.fontName = "Optima-ExtraBlack"
         scoreLabel.fontSize = 70
 
