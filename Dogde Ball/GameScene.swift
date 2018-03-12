@@ -13,6 +13,7 @@ import GameplayKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
 
     var score: Int = 0
+    var highScore: Int = 0
     var player: SKSpriteNode!
     var player2: SKSpriteNode!
     var scoreLabel: SKLabelNode!
@@ -110,6 +111,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func showGameOver() {
+        if(score>=highScore){
+            highScore = score
+        }
         let transition = SKTransition.fade(withDuration: 0.5)
         let gameOverScene = GameOverScene(size: self.size, score: score)
         self.view?.presentScene(gameOverScene, transition: transition)
@@ -124,7 +128,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     @objc func updateCounting(){
         score = score + 1
         scoreLabel.text = String(score)
-        
     }
     
 }
