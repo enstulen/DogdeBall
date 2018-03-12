@@ -13,6 +13,7 @@ struct CollisionBitMask {
     static let Obstacle: UInt32 = 0x01
 
 }
+
 enum ObstacleTye: Int {
     case Small = 0
     case Medium = 1

@@ -18,8 +18,8 @@ class GameOverScene: SKScene {
         super.init(size: size)
         
         self.backgroundColor = SKColor.black
-        let message = "GAME OVER"
         
+        let message = "GAME OVER"
         let defaults = UserDefaults.standard
         
         if(score >= defaults.integer(forKey: "HighScore")){

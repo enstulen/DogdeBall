@@ -27,8 +27,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let normalizedForce = force/maximumPossibleForce
             
             player.position.x = normalizedForce * self.size.width - 25
-            
-
         }
     }
     
@@ -48,7 +46,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addPlayer()
         
         scheduledTimerWithTimeInterval()
-        
     }
     
     func addRandomRow() {
@@ -90,7 +87,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    
     override func update(_ currentTime: TimeInterval) {
         var timeSinceLastUpdate = currentTime - lastUpdateTimeInterval
         lastUpdateTimeInterval = currentTime
@@ -98,9 +94,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             timeSinceLastUpdate = 1/60
             lastUpdateTimeInterval = currentTime
         }
-        
         updateWithTimeSinceLastUpdate(timeSinceLastUpdate: timeSinceLastUpdate)
-        
         
     }
     
@@ -129,5 +123,4 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         score = score + 1
         scoreLabel.text = String(score)
     }
-    
 }
