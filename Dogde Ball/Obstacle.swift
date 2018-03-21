@@ -23,17 +23,17 @@ class Obstacle: SKSpriteNode {
     
     init(type: ObstacleType, frameSize: CGSize) {
         super.init(texture: nil, color: UIColor.white, size: CGSize(width: 0, height: 30))
-
-        self.name = "OBSTACLE"
-        self.physicsBody?.isDynamic = true
         
         self.setObstacleSize(type: type, frameSize: frameSize)
-        
+
         self.position = CGPoint(x: 0, y: frameSize.height + frameSize.height)
+        
         self.setPhysicsProperties()
     }
     
     private func setPhysicsProperties() {
+        self.name = "OBSTACLE"
+        self.physicsBody?.isDynamic = true
         self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
         self.physicsBody?.categoryBitMask = CollisionBitMask.Obstacle
         self.physicsBody?.collisionBitMask = 0
