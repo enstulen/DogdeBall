@@ -9,6 +9,23 @@
 import SpriteKit
 import GameplayKit
 
+enum RowType: Int {
+    case oneS = 0
+    case oneM = 1
+    case oneL = 2
+    case twoS = 3
+    case twoM = 4
+    case threeS = 5
+    case sAndM = 6
+    case mAndS = 7
+    case oneMLeft = 8
+    case oneLLeft = 9
+    case oneMRight = 10
+    case oneLRight = 11
+    case xSAndL = 12
+    case lAndXs = 13
+    case twoXsAndM = 14
+}
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
 
