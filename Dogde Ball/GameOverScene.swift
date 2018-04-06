@@ -14,17 +14,35 @@ class GameOverScene: SKScene {
         super.init(coder: aDecoder)
     }
     
-    override init(size: CGSize) {
+    init(size: CGSize, score: Int) {
         super.init(size: size)
         
         self.backgroundColor = SKColor.black
+        
         let message = "GAME OVER"
+        let defaults = UserDefaults.standard
+        
+        if(score >= defaults.integer(forKey: "HighScore")){
+            defaults.set(score, forKey: "HighScore")
+        }
         
         let label = SKLabelNode(fontNamed: "Optima-ExtraBlack")
         label.text = message
         label.fontColor = SKColor.white
-        label.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
+        label.position = CGPoint(x: 0.5*self.size.width, y: 0.75*self.size.height)
         addChild(label)
+        
+        let scoreLabel = SKLabelNode(fontNamed: "Optima-ExtraBlack")
+        scoreLabel.text = "Score: " + String(score)
+        scoreLabel.fontColor = SKColor.white
+        scoreLabel.position = CGPoint(x: 0.5*self.size.width, y: 0.5*self.size.height)
+        addChild(scoreLabel)
+        
+        let highScoreLabel = SKLabelNode(fontNamed: "Optima-ExtraBlack")
+        highScoreLabel.text = "High Score: " + String(defaults.integer(forKey: "HighScore"))
+        highScoreLabel.fontColor = SKColor.white
+        highScoreLabel.position = CGPoint(x: 0.5*self.size.width, y: 0.4*self.size.height)
+        addChild(highScoreLabel)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

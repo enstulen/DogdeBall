@@ -16,8 +16,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
     }
     
 
+    var score: Int = 0
+    var highScore: Int = 0
     var player: SKSpriteNode!
     var player2: SKSpriteNode!
+    var scoreLabel: SKLabelNode!
     var networkingEngine: MultiPlayerNetworking!
     
     var initialPlayerPosition: CGPoint!
@@ -29,7 +32,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
             let normalizedForce = force/maximumPossibleForce
             
             player.position.x = normalizedForce * self.size.width - 25
-
         }
     }
     
@@ -45,8 +47,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self
         
+        addScoreLabel()
         addPlayer()
         
+        scheduledTimerWithTimeInterval()
     }
     
     func addRandomRow() {
@@ -88,18 +92,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
         }
     }
     
-    
     override func update(_ currentTime: TimeInterval) {
         var timeSinceLastUpdate = currentTime - lastUpdateTimeInterval
         lastUpdateTimeInterval = currentTime
-        
         if timeSinceLastUpdate > 1 {
             timeSinceLastUpdate = 1/60
             lastUpdateTimeInterval = currentTime
         }
-        
         updateWithTimeSinceLastUpdate(timeSinceLastUpdate: timeSinceLastUpdate)
-        
         
     }
     
@@ -110,8 +110,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
     }
     
     func showGameOver() {
+        if(score>=highScore){
+            highScore = score
+        }
         let transition = SKTransition.fade(withDuration: 0.5)
-        let gameOverScene = GameOverScene(size: self.size)
+        let gameOverScene = GameOverScene(size: self.size, score: score)
         self.view?.presentScene(gameOverScene, transition: transition)
+    }
+    
+    func scheduledTimerWithTimeInterval(){
+        var timer = Timer()
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateCounting(){
+        score = score + 1
+        scoreLabel.text = String(score)
     }
 }

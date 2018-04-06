@@ -13,6 +13,7 @@ struct CollisionBitMask {
     static let Obstacle: UInt32 = 0x01
 
 }
+
 enum ObstacleTye: Int {
     case Small = 0
     case Medium = 1
@@ -39,7 +40,7 @@ extension GameScene {
         player.physicsBody?.categoryBitMask = CollisionBitMask.Player
         player.physicsBody?.collisionBitMask = 0
         player.physicsBody?.contactTestBitMask = CollisionBitMask.Obstacle
-                
+        
         addChild(player)
         
         initialPlayerPosition = player.position
@@ -77,8 +78,6 @@ extension GameScene {
         actionArray.append(SKAction.removeFromParent())
         obstacle.run(SKAction.sequence(actionArray))
     }
-    
-    
     
     func addRow(type: RowType) {
         switch type {
@@ -146,33 +145,17 @@ extension GameScene {
             break
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-}
+        
+    func addScoreLabel(){
+        
+        scoreLabel = SKLabelNode(text: "0")
+        scoreLabel.zPosition = 10
+        scoreLabel.position = CGPoint(x: 0.9*self.size.width, y: 0.9*self.size.height)
+        scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
+        scoreLabel.fontName = "Optima-ExtraBlack"
+        scoreLabel.fontSize = 70
 
+        addChild(scoreLabel)
+    }
+}
 
