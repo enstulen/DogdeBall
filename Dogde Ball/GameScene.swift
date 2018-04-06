@@ -10,13 +10,18 @@ import SpriteKit
 import GameplayKit
 
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtocol{
+    func matchEnded() {
+        print("ended")
+    }
+    
 
     var score: Int = 0
     var highScore: Int = 0
     var player: SKSpriteNode!
     var player2: SKSpriteNode!
     var scoreLabel: SKLabelNode!
+    var networkingEngine: MultiPlayerNetworking!
     
     var initialPlayerPosition: CGPoint!
     

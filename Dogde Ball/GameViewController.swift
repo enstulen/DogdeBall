@@ -12,6 +12,8 @@ import GameplayKit
 import GameKit
 
 class GameViewController: UIViewController {
+    
+    var networkingEngine: MultiPlayerNetworking!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +48,12 @@ class GameViewController: UIViewController {
     }
     
     @objc func playerAuthenticated() {
-        GameKitHelper.sharedGameKitHelper.findMatch(withMinPlayers: 2, maxPlayers: 2, viewController: self, delegate: self)
-        print("player auth")
+        let skView = view as! SKView
+        let scene = skView.scene as! GameScene
+        networkingEngine = MultiPlayerNetworking()
+        networkingEngine.delegate = scene as MultiplayerNetworkingProtocol
+        scene.networkingEngine = networkingEngine
+        GameKitHelper.sharedGameKitHelper.findMatch(withMinPlayers: 2, maxPlayers: 2, viewController: self, delegate: networkingEngine)
     }
 
 
@@ -73,20 +79,3 @@ class GameViewController: UIViewController {
     }
 }
 
-extension GameViewController: GameKitHelperDelegate {
-    func matchStarted() {
-        print("match started")
-    }
-    
-    func matchEnded() {
-        print("match ended")
-
-    }
-    
-    func match(match: GKMatch, didReceive data: Data, fromPlayer playerID: String) {
-        print("recived data")
-
-    }
-    
-    
-}

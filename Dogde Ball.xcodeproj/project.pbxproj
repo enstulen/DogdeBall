@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5A581B5320568A8D001979E4 /* GameKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A581B5220568A8D001979E4 /* GameKitHelper.swift */; };
+		5A581B552056A022001979E4 /* MultiPlayerNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A581B542056A022001979E4 /* MultiPlayerNetworking.swift */; };
 		5A6812C2204D3AA900B1B6BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6812C1204D3AA900B1B6BE /* AppDelegate.swift */; };
 		5A6812C4204D3AA900B1B6BE /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5A6812C3204D3AA900B1B6BE /* GameScene.sks */; };
 		5A6812C6204D3AA900B1B6BE /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5A6812C5204D3AA900B1B6BE /* Actions.sks */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		5A581B5220568A8D001979E4 /* GameKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKitHelper.swift; sourceTree = "<group>"; };
+		5A581B542056A022001979E4 /* MultiPlayerNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPlayerNetworking.swift; sourceTree = "<group>"; };
 		5A6812BE204D3AA900B1B6BE /* Dogde Ball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dogde Ball.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A6812C1204D3AA900B1B6BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A6812C3204D3AA900B1B6BE /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				5A581B5220568A8D001979E4 /* GameKitHelper.swift */,
+				5A581B542056A022001979E4 /* MultiPlayerNetworking.swift */,
 			);
 			path = GameKit;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				5A6812F8204D482D00B1B6BE /* GameOverScene.swift in Sources */,
 				5A6812F6204D3B7000B1B6BE /* GameElements.swift in Sources */,
 				5A6812C8204D3AA900B1B6BE /* GameScene.swift in Sources */,
+				5A581B552056A022001979E4 /* MultiPlayerNetworking.swift in Sources */,
 				5A6812CA204D3AA900B1B6BE /* GameViewController.swift in Sources */,
 				5A581B5320568A8D001979E4 /* GameKitHelper.swift in Sources */,
 				5A6812C2204D3AA900B1B6BE /* AppDelegate.swift in Sources */,
