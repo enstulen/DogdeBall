@@ -49,11 +49,14 @@ class GameViewController: UIViewController {
     
     @objc func playerAuthenticated() {
         let skView = view as! SKView
-        let scene = skView.scene as! GameScene
-        networkingEngine = MultiPlayerNetworking()
-        networkingEngine.delegate = scene as MultiplayerNetworkingProtocol
-        scene.networkingEngine = networkingEngine
-        GameKitHelper.sharedGameKitHelper.findMatch(withMinPlayers: 2, maxPlayers: 2, viewController: self, delegate: networkingEngine)
+        if let scene = skView.scene as? GameScene {
+            print("playerauth!!!!")
+            networkingEngine = MultiPlayerNetworking()
+            networkingEngine.delegate = scene as MultiplayerNetworkingProtocol
+            scene.networkingEngine = networkingEngine
+            GameKitHelper.sharedGameKitHelper.findMatch(withMinPlayers: 2, maxPlayers: 2, viewController: self, delegate: networkingEngine)
+        }
+
     }
 
 
