@@ -177,7 +177,7 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
     }
     
     func findMatch(withMinPlayers minPlayers: Int, maxPlayers: Int, viewController: UIViewController?, delegate: GameKitHelperDelegate?) {
-        print("hei")
+        // print("hei")
 
         if !enableGameCenter {
             return
