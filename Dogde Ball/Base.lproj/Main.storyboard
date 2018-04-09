@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A278a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WmQ-GE-GIb">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,7 +13,7 @@
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="gameViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BV1-FR-VrT" customClass="GameViewController" customModule="Dogde_Ball" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,6 +23,72 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="2068" y="117.39130434782609"/>
+        </scene>
+        <!--Main Menu View Controller-->
+        <scene sceneID="YSR-tP-xwZ">
+            <objects>
+                <viewController id="URq-hY-BJh" customClass="MainMenuViewController" customModule="Dogde_Ball" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dX3-pV-Tm4" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kSB-sc-TyI">
+                                <rect key="frame" x="145" y="318.5" width="84" height="30"/>
+                                <state key="normal" title="Singleplayer"/>
+                                <connections>
+                                    <action selector="singlePlayerButtonPressed:" destination="URq-hY-BJh" eventType="touchUpInside" id="cg3-g1-zEz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVF-Fr-RfX">
+                                <rect key="frame" x="149" y="356" width="76" height="30"/>
+                                <state key="normal" title="Multiplayer"/>
+                                <connections>
+                                    <action selector="multiPlayerButtonPressed:" destination="URq-hY-BJh" eventType="touchUpInside" id="5uh-2g-C4m"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5e5-Fv-thO">
+                                <rect key="frame" x="151" y="394" width="72" height="30"/>
+                                <state key="normal" title="HighScore"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="5e5-Fv-thO" firstAttribute="centerX" secondItem="dX3-pV-Tm4" secondAttribute="centerX" id="1fp-bL-4ux"/>
+                            <constraint firstItem="kSB-sc-TyI" firstAttribute="centerX" secondItem="dX3-pV-Tm4" secondAttribute="centerX" id="AaR-Oh-txG"/>
+                            <constraint firstItem="5e5-Fv-thO" firstAttribute="top" secondItem="HVF-Fr-RfX" secondAttribute="bottom" constant="8" id="C3c-Om-cXe"/>
+                            <constraint firstItem="HVF-Fr-RfX" firstAttribute="centerX" secondItem="dX3-pV-Tm4" secondAttribute="centerX" id="TNj-iQ-NQD"/>
+                            <constraint firstItem="kSB-sc-TyI" firstAttribute="centerY" secondItem="dX3-pV-Tm4" secondAttribute="centerY" id="heM-XK-CKu"/>
+                            <constraint firstItem="HVF-Fr-RfX" firstAttribute="top" secondItem="kSB-sc-TyI" secondAttribute="bottom" constant="7.5" id="mlE-VA-zZe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="NYc-Mw-32F"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qku-ux-3TM"/>
+                    <connections>
+                        <outlet property="multiPlayerButton" destination="HVF-Fr-RfX" id="9Mj-E8-FeT"/>
+                        <outlet property="singlePlayerButton" destination="kSB-sc-TyI" id="SDT-nT-gEr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ob8-Kf-jHN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1280.8" y="118.29085457271366"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="t0e-Hs-NAn">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="WmQ-GE-GIb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7bK-rl-BPo">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="URq-hY-BJh" kind="relationship" relationship="rootViewController" id="Jo9-NP-UTT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JUh-iM-45z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="341.60000000000002" y="118.29085457271366"/>
         </scene>
     </scenes>
 </document>

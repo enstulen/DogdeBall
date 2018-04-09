@@ -141,6 +141,7 @@ class MultiPlayerNetworking: NSObject, GameKitHelperDelegate {
             gameState = GameState.Active
             sendBeginGame()
             delegate?.setCurrentPlayerIndex(index: 0)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "start_multiplayer_game"), object: nil)
         }
     }
     
@@ -185,7 +186,7 @@ class MultiPlayerNetworking: NSObject, GameKitHelperDelegate {
         //1
         orderOfPlayers.append(randomNumberDetails)
         //2
-        orderOfPlayers.sort(by: { $0.randomNumber > $1.randomNumber })
+        orderOfPlayers.sort(by: { $0.randomNumber < $1.randomNumber })
 
         if allRandomNumbersAreReceived() {
             receivedAllRandomNumbers = true
@@ -195,10 +196,10 @@ class MultiPlayerNetworking: NSObject, GameKitHelperDelegate {
     func isLocalPlayerPlayer1() -> Bool {
         let playerDetail = orderOfPlayers[0]
         if playerDetail.playerId == GKLocalPlayer.localPlayer().playerID {
-            print("I'm player 1.. w00t :]")
+            print("I'm player 1")
             return true
         }
-        print("I'm player 2.. w00t :]")
+        print("I'm player 2")
 
         return false
     }
@@ -239,6 +240,7 @@ class MultiPlayerNetworking: NSObject, GameKitHelperDelegate {
             
         } else if message.messageType == MessageType.GameBegin {
             gameState = GameState.Active
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "start_multiplayer_game"), object: nil)
             if let localPlayerIndex = indexForLocalPlayer() {
                 delegate?.setCurrentPlayerIndex(index: localPlayerIndex)
             }
@@ -246,6 +248,7 @@ class MultiPlayerNetworking: NSObject, GameKitHelperDelegate {
             let messageMove = data.withUnsafeBytes({ (ptr: UnsafePointer<MessageMove>) -> MessageMove in
                 return ptr.pointee
             })
+            print("recieve \(messageMove.movePercent)")
             self.delegate?.movePlayerAtIndex(index: self.indexForPlayer(playerId: playerID)!, movePercent: messageMove.movePercent)
         } else if message.messageType == MessageType.GameOver {
             print("game over")

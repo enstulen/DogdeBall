@@ -14,15 +14,48 @@ import GameKit
 class GameViewController: UIViewController {
     
     var networkingEngine: MultiPlayerNetworking!
-
+    var isMultiPlayer = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.showAuthenticationViewController), name: Notification.Name(rawValue: GameKitHelper.sharedGameKitHelper.presentAuthenticationViewController) , object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.playerAuthenticated), name: NSNotification.Name(rawValue: GameKitHelper.sharedGameKitHelper.localPlayerIsAuthenticated), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.startMultiplayerGame), name: NSNotification.Name(rawValue: "start_multiplayer_game"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.goToMainMenu), name: NSNotification.Name(rawValue: "go_to_main_menu"), object: nil)
 
-        GameKitHelper.sharedGameKitHelper.authenticateLocalPlayer()
-
+        
+        startGame()
+        
+        if isMultiPlayer == true {
+            let skView = view as! SKView
+            if let scene = skView.scene as? GameScene {
+                networkingEngine = MultiPlayerNetworking()
+                networkingEngine.delegate = scene as MultiplayerNetworkingProtocol
+                scene.networkingEngine = networkingEngine
+                GameKitHelper.sharedGameKitHelper.findMatch(withMinPlayers: 2, maxPlayers: 2, viewController: self, delegate: networkingEngine)
+            }
+        }
+        
+    }
+    
+    @objc func goToMainMenu() {
+        self.navigationController?.popViewController(animated: false)
+    }
+    
+    @objc func startMultiplayerGame() {
+        let skView = view as! SKView
+        if let scene = skView.scene as? GameScene {
+            if isMultiPlayer {
+                scene.view?.isPaused = false
+            }
+        }
+    }
+    
+    
+    func startGame(){
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
@@ -31,6 +64,9 @@ class GameViewController: UIViewController {
                 
                 // Present the scene
                 view.presentScene(scene)
+                if isMultiPlayer {
+                    scene.view?.isPaused = true
+                }
             }
             
             view.ignoresSiblingOrder = true
@@ -38,32 +74,21 @@ class GameViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
         }
+        
     }
     
-    @objc func showAuthenticationViewController() {
-        let gamekitHelper = GameKitHelper.sharedGameKitHelper
-        self.present(gamekitHelper.authenticationViewController, animated: true) {
-            print("halla")
-        }
-    }
     
     @objc func playerAuthenticated() {
-        let skView = view as! SKView
-        if let scene = skView.scene as? GameScene {
-            print("playerauth!!!!")
-            networkingEngine = MultiPlayerNetworking()
-            networkingEngine.delegate = scene as MultiplayerNetworkingProtocol
-            scene.networkingEngine = networkingEngine
-            GameKitHelper.sharedGameKitHelper.findMatch(withMinPlayers: 2, maxPlayers: 2, viewController: self, delegate: networkingEngine)
-        }
+        print("here1")
+
 
     }
-
-
+    
+    
     override var shouldAutorotate: Bool {
         return true
     }
-
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return .allButUpsideDown
@@ -71,12 +96,12 @@ class GameViewController: UIViewController {
             return .all
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
-
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
