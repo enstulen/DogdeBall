@@ -62,7 +62,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
             let force = touch.force
             let normalizedForce = force/maximumPossibleForce
             if (maximumPossibleForce == 0) {
-                movePercent = touch.location(in: self.view).x
+                movePercent = touch.location(in: self).x
             } else {
                 movePercent = normalizedForce * self.size.width - 25
             }
