@@ -32,6 +32,7 @@ class GameViewController: UIViewController {
         if isMultiPlayer == true {
             let skView = view as! SKView
             if let scene = skView.scene as? GameScene {
+                scene.isMultiPlayer = true
                 networkingEngine = MultiPlayerNetworking()
                 networkingEngine.delegate = scene as MultiplayerNetworkingProtocol
                 scene.networkingEngine = networkingEngine
@@ -58,15 +59,17 @@ class GameViewController: UIViewController {
     func startGame(){
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+            if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
-                
                 // Present the scene
                 view.presentScene(scene)
                 if isMultiPlayer {
+                    scene.isMultiPlayer = true
                     scene.view?.isPaused = true
                 }
+                scene.addElements()
+
             }
             
             view.ignoresSiblingOrder = true

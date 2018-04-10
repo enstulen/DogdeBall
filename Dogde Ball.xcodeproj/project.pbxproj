@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5A30A8A0207BB3D7000315F3 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A30A89F207BB3D7000315F3 /* MainMenuViewController.swift */; };
+		5A30A8A2207CCBB9000315F3 /* test.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5A30A8A1207CCBB9000315F3 /* test.sks */; };
 		5A581B5320568A8D001979E4 /* GameKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A581B5220568A8D001979E4 /* GameKitHelper.swift */; };
 		5A581B552056A022001979E4 /* MultiPlayerNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A581B542056A022001979E4 /* MultiPlayerNetworking.swift */; };
 		5A6812C2204D3AA900B1B6BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6812C1204D3AA900B1B6BE /* AppDelegate.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		5A30A89F207BB3D7000315F3 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		5A30A8A1207CCBB9000315F3 /* test.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = test.sks; sourceTree = "<group>"; };
 		5A581B5220568A8D001979E4 /* GameKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKitHelper.swift; sourceTree = "<group>"; };
 		5A581B542056A022001979E4 /* MultiPlayerNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPlayerNetworking.swift; sourceTree = "<group>"; };
 		5A6812BE204D3AA900B1B6BE /* Dogde Ball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dogde Ball.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +133,7 @@
 				EC76D0F7207CD81300A84CFE /* ObstacleRow.swift */,
 				5A6812C1204D3AA900B1B6BE /* AppDelegate.swift */,
 				5A6812C3204D3AA900B1B6BE /* GameScene.sks */,
+				5A30A8A1207CCBB9000315F3 /* test.sks */,
 				5A6812C5204D3AA900B1B6BE /* Actions.sks */,
 				5A6812C7204D3AA900B1B6BE /* GameScene.swift */,
 				5A6812C9204D3AA900B1B6BE /* GameViewController.swift */,
@@ -275,6 +278,7 @@
 				5A6812CF204D3AA900B1B6BE /* Assets.xcassets in Resources */,
 				5A6812D2204D3AA900B1B6BE /* LaunchScreen.storyboard in Resources */,
 				5A6812C6204D3AA900B1B6BE /* Actions.sks in Resources */,
+				5A30A8A2207CCBB9000315F3 /* test.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
