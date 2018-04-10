@@ -132,8 +132,10 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
     
     func matchmakerViewController(_ viewController: GKMatchmakerViewController, didFind match: GKMatch) {
         viewController.dismiss(animated: true, completion: nil)
-        self.match = match
         match.delegate = self
+        self.match = match
+        self.match.delegate = self
+
         if (!matchStarted && match.expectedPlayerCount == 0) {
             print("Ready to start")
             self.lookupPlayers()
@@ -144,21 +146,25 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
     
     func match(_ match: GKMatch, didReceive data: Data, fromRemotePlayer player: GKPlayer) {
         if (match != self.match) {
+            print("match != self.match")
             return
         }
         delegate?.match(match: match, didReceive: data, fromPlayer: player.playerID!)
     }
     func match(_ match: GKMatch, player: GKPlayer, didChange state: GKPlayerConnectionState) {
         if (match != self.match){
+            print("match != self.match")
             return
         }
         switch state {
         case .stateConnected:
+            //Connected
             if (!matchStarted && match.expectedPlayerCount == 0) {
                 print("Ready to start match")
                 self.lookupPlayers()
             }
         case .stateDisconnected:
+            //Player disconnected
             print("Player disconnected")
             matchStarted = false
             delegate?.matchEnded()
@@ -179,7 +185,6 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
     }
     
     func findMatch(withMinPlayers minPlayers: Int, maxPlayers: Int, viewController: UIViewController?, delegate: GameKitHelperDelegate?) {
-        // print("hei")
 
         if !enableGameCenter {
             return

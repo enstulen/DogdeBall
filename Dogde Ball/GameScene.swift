@@ -33,15 +33,16 @@ enum RowType: Int {
     case twoXsAndM = 13
 }
 
-class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtocol{
-
+class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtocol{    
+    
     func matchEnded() {
         print("ended")
     }
     
-
+    
     var score: Int = 0
     var highScore: Int = 0
+    var isMultiPlayer = false
     
     var players = [SKSpriteNode]()
     var player: SKSpriteNode!
@@ -57,11 +58,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
             
             let maximumPossibleForce = touch.maximumPossibleForce
             var movePercent: CGFloat = 0
-
+            
             let force = touch.force
             let normalizedForce = force/maximumPossibleForce
             if (maximumPossibleForce == 0) {
-                movePercent = touch.location(in: self.view).x
+                movePercent = touch.location(in: self).x
             } else {
                 movePercent = normalizedForce * self.size.width - 25
             }
@@ -69,6 +70,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
             players[currentIndex].position.x = CGFloat(movePercent)
             sendMove(movePercent: Float(movePercent))
             
+        }
+    }
+    
+    func addElements(){
+        addPlayer()
+        if (isMultiPlayer) {
+            addPlayer2()
+        }else {
+            addScoreLabel()
+            scheduledTimerWithTimeInterval()
         }
     }
     
@@ -103,13 +114,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self
         
-        addScoreLabel()
-        addPlayer()
-        addPlayer2()
-        
         currentIndex = 0
         
-        scheduledTimerWithTimeInterval()
     }
     
     func randomRange(_ range:Range<Int>) -> Int
@@ -200,7 +206,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
     
     
     override func update(_ currentTime: TimeInterval) {
-        
         var timeSinceLastUpdate = currentTime - lastUpdateTimeInterval
         lastUpdateTimeInterval = currentTime
         if timeSinceLastUpdate > 1 {
@@ -211,19 +216,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
         
     }
     
+    
     func didBegin(_ contact: SKPhysicsContact) {
-        if contact.bodyA.node?.name == "PLAYER" {
-            //showGameOver()
+        
+        if (isMultiPlayer && networkingEngine != nil) {
+            if networkingEngine.isLocalPlayerPlayer1() && contact.bodyA.node?.name == "PLAYER" {
+                print("SENDING PLAYER1 LOST")
+
+                networkingEngine.sendGameOver(player1won: false)
+                showGameOver(localPlayerWin: false)
+            }
+            if networkingEngine.isLocalPlayerPlayer1() && contact.bodyA.node?.name == "PLAYER2" {
+                print("SENDING PLAYER1 WON")
+
+                networkingEngine.sendGameOver(player1won: true)
+                showGameOver(localPlayerWin: true)
+            }
+        } else {
+            if contact.bodyA.node?.name == "PLAYER" {
+                showGameOver(localPlayerWin: nil)
+            }
         }
+        
+        
     }
     
-    func showGameOver() {
+    func showGameOver(localPlayerWin: Bool?) {
         if(score>=highScore){
             highScore = score
         }
         let transition = SKTransition.fade(withDuration: 0.5)
-        let gameOverScene = GameOverScene(size: self.size, score: score)
-        self.view?.presentScene(gameOverScene, transition: transition)
+        let gameOverScene = GameOverScene(size: self.size, score: score, localPlayerWin: localPlayerWin)
+        self.view?.presentScene(gameOverScene)
+        
     }
     
     func scheduledTimerWithTimeInterval(){
