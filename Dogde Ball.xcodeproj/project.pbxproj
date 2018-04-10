@@ -19,6 +19,8 @@
 		5A6812E8204D3AA900B1B6BE /* Dogde_BallUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6812E7204D3AA900B1B6BE /* Dogde_BallUITests.swift */; };
 		5A6812F6204D3B7000B1B6BE /* GameElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6812F5204D3B7000B1B6BE /* GameElements.swift */; };
 		5A6812F8204D482D00B1B6BE /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6812F7204D482D00B1B6BE /* GameOverScene.swift */; };
+		EC76D0F9207CD81400A84CFE /* ObstacleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76D0F7207CD81300A84CFE /* ObstacleRow.swift */; };
+		EC76D0FA207CD81400A84CFE /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76D0F8207CD81300A84CFE /* Obstacle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		5A6812E9204D3AA900B1B6BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A6812F5204D3B7000B1B6BE /* GameElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameElements.swift; sourceTree = "<group>"; };
 		5A6812F7204D482D00B1B6BE /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		EC76D0F7207CD81300A84CFE /* ObstacleRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleRow.swift; sourceTree = "<group>"; };
+		EC76D0F8207CD81300A84CFE /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,8 @@
 		5A6812C0204D3AA900B1B6BE /* Dogde Ball */ = {
 			isa = PBXGroup;
 			children = (
+				EC76D0F8207CD81300A84CFE /* Obstacle.swift */,
+				EC76D0F7207CD81300A84CFE /* ObstacleRow.swift */,
 				5A6812C1204D3AA900B1B6BE /* AppDelegate.swift */,
 				5A6812C3204D3AA900B1B6BE /* GameScene.sks */,
 				5A6812C5204D3AA900B1B6BE /* Actions.sks */,
@@ -276,9 +282,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC76D0FA207CD81400A84CFE /* Obstacle.swift in Sources */,
 				5A6812F8204D482D00B1B6BE /* GameOverScene.swift in Sources */,
 				5A6812F6204D3B7000B1B6BE /* GameElements.swift in Sources */,
 				5A6812C8204D3AA900B1B6BE /* GameScene.swift in Sources */,
+				EC76D0F9207CD81400A84CFE /* ObstacleRow.swift in Sources */,
 				5A6812CA204D3AA900B1B6BE /* GameViewController.swift in Sources */,
 				5A6812C2204D3AA900B1B6BE /* AppDelegate.swift in Sources */,
 			);
