@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A30A8A0207BB3D7000315F3 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A30A89F207BB3D7000315F3 /* MainMenuViewController.swift */; };
 		5A581B5320568A8D001979E4 /* GameKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A581B5220568A8D001979E4 /* GameKitHelper.swift */; };
 		5A581B552056A022001979E4 /* MultiPlayerNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A581B542056A022001979E4 /* MultiPlayerNetworking.swift */; };
 		5A6812C2204D3AA900B1B6BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6812C1204D3AA900B1B6BE /* AppDelegate.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A30A89F207BB3D7000315F3 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		5A581B5220568A8D001979E4 /* GameKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKitHelper.swift; sourceTree = "<group>"; };
 		5A581B542056A022001979E4 /* MultiPlayerNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPlayerNetworking.swift; sourceTree = "<group>"; };
 		5A6812BE204D3AA900B1B6BE /* Dogde Ball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dogde Ball.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +134,7 @@
 				5A6812D3204D3AA900B1B6BE /* Info.plist */,
 				5A6812F5204D3B7000B1B6BE /* GameElements.swift */,
 				5A6812F7204D482D00B1B6BE /* GameOverScene.swift */,
+				5A30A89F207BB3D7000315F3 /* MainMenuViewController.swift */,
 			);
 			path = "Dogde Ball";
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A30A8A0207BB3D7000315F3 /* MainMenuViewController.swift in Sources */,
 				5A6812F8204D482D00B1B6BE /* GameOverScene.swift in Sources */,
 				5A6812F6204D3B7000B1B6BE /* GameElements.swift in Sources */,
 				5A6812C8204D3AA900B1B6BE /* GameScene.swift in Sources */,
@@ -466,6 +470,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R4BG54K3KD;
 				INFOPLIST_FILE = "Dogde Ball/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Group3TDT4240.Dogde-Ball";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -484,6 +489,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R4BG54K3KD;
 				INFOPLIST_FILE = "Dogde Ball/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Group3TDT4240.Dogde-Ball";
 				PRODUCT_NAME = "$(TARGET_NAME)";

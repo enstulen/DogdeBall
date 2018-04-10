@@ -27,7 +27,7 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
     let presentAuthenticationViewController = "present_authentication_view_controller"
     
     let localPlayerIsAuthenticated = "local_player_authenticated"
-    
+
     var matchStarted = false
     
     var playersDict = [String: GKPlayer]()
@@ -121,6 +121,8 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
     func matchmakerViewControllerWasCancelled(_ viewController: GKMatchmakerViewController) {
         viewController.dismiss(animated: true) {
             //Dismiss
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "go_to_main_menu"), object: self)
+
         }
     }
     

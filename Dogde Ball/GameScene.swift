@@ -11,6 +11,7 @@ import GameplayKit
 
 
 class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtocol{
+
     func matchEnded() {
         print("ended")
     }
@@ -18,29 +19,61 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
 
     var score: Int = 0
     var highScore: Int = 0
+    
+    var players = [SKSpriteNode]()
     var player: SKSpriteNode!
     var player2: SKSpriteNode!
     var scoreLabel: SKLabelNode!
     var networkingEngine: MultiPlayerNetworking!
+    var currentIndex: Int!
     
     var initialPlayerPosition: CGPoint!
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
+            
             let maximumPossibleForce = touch.maximumPossibleForce
+            var movePercent: CGFloat = 0
+
             let force = touch.force
             let normalizedForce = force/maximumPossibleForce
+            if (maximumPossibleForce == 0) {
+                movePercent = touch.location(in: self.view).x
+            } else {
+                movePercent = normalizedForce * self.size.width - 25
+            }
             
-            player.position.x = normalizedForce * self.size.width - 25
+            players[currentIndex].position.x = CGFloat(movePercent)
+            sendMove(movePercent: Float(movePercent))
+            
         }
+    }
+    
+    func pause(){
+        if self.scene?.view?.isPaused == true {
+            self.scene?.view?.isPaused = false
+        } else {
+            self.scene?.view?.isPaused = true
+        }
+    }
+    
+    func movePlayerAtIndex(index: Int, movePercent: Float) {
+        players[index].position.x = CGFloat(movePercent)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         resetPlayerPosition()
     }
     
+    func sendMove(movePercent: Float){
+        if networkingEngine != nil {
+            networkingEngine.sendMove(movePercent: movePercent)
+        }
+    }
+    
     func resetPlayerPosition() {
-        player.position = initialPlayerPosition
+        players[currentIndex].position = initialPlayerPosition
+        sendMove(movePercent: Float(initialPlayerPosition.x))
     }
     
     override func didMove(to view: SKView) {
@@ -49,6 +82,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
         
         addScoreLabel()
         addPlayer()
+        addPlayer2()
+        
+        currentIndex = 0
         
         scheduledTimerWithTimeInterval()
     }
@@ -93,6 +129,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
     }
     
     override func update(_ currentTime: TimeInterval) {
+        
         var timeSinceLastUpdate = currentTime - lastUpdateTimeInterval
         lastUpdateTimeInterval = currentTime
         if timeSinceLastUpdate > 1 {
@@ -105,7 +142,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
     
     func didBegin(_ contact: SKPhysicsContact) {
         if contact.bodyA.node?.name == "PLAYER" {
-            showGameOver()
+            //showGameOver()
         }
     }
     
@@ -127,5 +164,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
     @objc func updateCounting(){
         score = score + 1
         scoreLabel.text = String(score)
+    }
+    
+    func setCurrentPlayerIndex(index :Int) {
+        currentIndex = index
     }
 }
