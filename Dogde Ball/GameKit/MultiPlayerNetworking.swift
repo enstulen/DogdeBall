@@ -13,6 +13,7 @@ protocol MultiplayerNetworkingProtocol: class {
     func matchEnded()
     func setCurrentPlayerIndex(index :Int)
     func movePlayerAtIndex(index: Int, movePercent: Float)
+    func showGameOver(localPlayerWin: Bool)
 }
 
 enum GameState : Int {
@@ -251,13 +252,40 @@ class MultiPlayerNetworking: NSObject, GameKitHelperDelegate {
             print("recieve \(messageMove.movePercent)")
             self.delegate?.movePlayerAtIndex(index: self.indexForPlayer(playerId: playerID)!, movePercent: messageMove.movePercent)
         } else if message.messageType == MessageType.GameOver {
-            print("game over")
+        
+            let messageGameOver = data.withUnsafeBytes({ (ptr: UnsafePointer<MessageGameOver>) -> MessageGameOver in
+                return ptr.pointee
+            })
+            
+            if isLocalPlayerPlayer1() == true {
+                if (messageGameOver.player1Won == true){
+                    delegate?.showGameOver(localPlayerWin: true)
+                }else {
+                    delegate?.showGameOver(localPlayerWin: false)
+                }
+            } else {
+                if (messageGameOver.player1Won == true){
+                    delegate?.showGameOver(localPlayerWin: false)
+                }else {
+                    delegate?.showGameOver(localPlayerWin: true)
+                }
+            }
+            print("game over, player 1 : \(messageGameOver.player1Won)")
+
         }
  
     }
     func sendMove(movePercent: Float) {
         var messageMove = MessageMove(message: Message(messageType: MessageType.Move), movePercent: movePercent)
         let data = NSData(bytes: &messageMove, length: MemoryLayout<MessageMove>.size)
+        send(data: data)
+
+    }
+    
+    func sendGameOver(player1won: Bool) {
+        var gameOverMessage = MessageGameOver(message:
+            Message(messageType: MessageType.GameOver), player1Won: player1won)
+        let data = NSData(bytes: &gameOverMessage, length: MemoryLayout<MessageGameOver>.size)
         send(data: data)
 
     }

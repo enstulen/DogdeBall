@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 
-class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtocol{
+class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtocol{    
 
     func matchEnded() {
         print("ended")
@@ -129,6 +129,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
     }
     
     override func update(_ currentTime: TimeInterval) {
+        print(networkingEngine.isLocalPlayerPlayer1())
+        print(players[networkingEngine.indexForLocalPlayer()!])
+        
         
         var timeSinceLastUpdate = currentTime - lastUpdateTimeInterval
         lastUpdateTimeInterval = currentTime
@@ -140,19 +143,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
         
     }
     
+    
     func didBegin(_ contact: SKPhysicsContact) {
-        if contact.bodyA.node?.name == "PLAYER" {
-            //showGameOver()
+        
+        if (networkingEngine.isLocalPlayerPlayer1()) {
+            if contact.bodyA.node?.name == "PLAYER"   {
+                networkingEngine.sendGameOver(player1won: false)
+                showGameOver(localPlayerWin: false)
+            } else if contact.bodyA.node?.name == "PLAYER2"{
+                networkingEngine.sendGameOver(player1won: true)
+                showGameOver(localPlayerWin: true)
+            }
         }
+
     }
     
-    func showGameOver() {
+    func showGameOver(localPlayerWin: Bool) {
         if(score>=highScore){
             highScore = score
         }
         let transition = SKTransition.fade(withDuration: 0.5)
-        let gameOverScene = GameOverScene(size: self.size, score: score)
-        self.view?.presentScene(gameOverScene, transition: transition)
+        let gameOverScene = GameOverScene(size: self.size, score: score, localPlayerWin: localPlayerWin)
+        self.view?.presentScene(gameOverScene)
+
     }
     
     func scheduledTimerWithTimeInterval(){

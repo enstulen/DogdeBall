@@ -52,7 +52,7 @@
                                 <state key="normal" title="HighScore"/>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="5e5-Fv-thO" firstAttribute="centerX" secondItem="dX3-pV-Tm4" secondAttribute="centerX" id="1fp-bL-4ux"/>
                             <constraint firstItem="kSB-sc-TyI" firstAttribute="centerX" secondItem="dX3-pV-Tm4" secondAttribute="centerX" id="AaR-Oh-txG"/>
@@ -72,6 +72,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ob8-Kf-jHN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1280.8" y="118.29085457271366"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="dL8-a3-XmY">
+            <objects>
+                <viewController storyboardIdentifier="jalla" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aUV-RY-zp9" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s9F-9t-fjy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Zxn-qa-Bhs"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XxL-ig-VAT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1711" y="830"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="t0e-Hs-NAn">

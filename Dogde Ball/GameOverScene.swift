@@ -14,12 +14,16 @@ class GameOverScene: SKScene {
         super.init(coder: aDecoder)
     }
     
-    init(size: CGSize, score: Int) {
+    init(size: CGSize, score: Int, localPlayerWin: Bool) {
         super.init(size: size)
         
         self.backgroundColor = SKColor.black
-        
-        let message = "GAME OVER"
+        var message = ""
+        if localPlayerWin == true {
+            message = "YOU WIN"
+        } else {
+            message = "YOU LOSE"
+        }
         let defaults = UserDefaults.standard
         
         if(score >= defaults.integer(forKey: "HighScore")){
