@@ -30,6 +30,10 @@ class MainMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor.black
+        //self.view.scene.backgroundColor = SKColor.black
+        
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.showAuthenticationViewController), name: Notification.Name(rawValue: GameKitHelper.sharedGameKitHelper.presentAuthenticationViewController) , object: nil)
         
         GameKitHelper.sharedGameKitHelper.authenticateLocalPlayer()

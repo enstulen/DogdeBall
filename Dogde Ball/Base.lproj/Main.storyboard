@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WmQ-GE-GIb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WmQ-GE-GIb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,37 +33,70 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kSB-sc-TyI">
-                                <rect key="frame" x="145" y="318.5" width="84" height="30"/>
-                                <state key="normal" title="Singleplayer"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l77-4X-ilr">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kSB-sc-TyI">
+                                <rect key="frame" x="82" y="216" width="210" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="210" id="mfo-md-M1B"/>
+                                    <constraint firstAttribute="height" constant="60" id="nnV-3j-yEv"/>
+                                </constraints>
+                                <state key="normal" image="single"/>
                                 <connections>
                                     <action selector="singlePlayerButtonPressed:" destination="URq-hY-BJh" eventType="touchUpInside" id="cg3-g1-zEz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVF-Fr-RfX">
-                                <rect key="frame" x="149" y="356" width="76" height="30"/>
-                                <state key="normal" title="Multiplayer"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVF-Fr-RfX">
+                                <rect key="frame" x="82" y="310" width="210" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="210" id="JzB-3M-UEA"/>
+                                    <constraint firstAttribute="height" constant="60" id="bci-QH-okw"/>
+                                </constraints>
+                                <state key="normal" image="multi"/>
                                 <connections>
                                     <action selector="multiPlayerButtonPressed:" destination="URq-hY-BJh" eventType="touchUpInside" id="5uh-2g-C4m"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5e5-Fv-thO">
-                                <rect key="frame" x="151" y="394" width="72" height="30"/>
-                                <state key="normal" title="HighScore"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5e5-Fv-thO">
+                                <rect key="frame" x="82" y="403" width="210" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="DdH-Iu-eGI"/>
+                                    <constraint firstAttribute="width" constant="210" id="JcZ-pN-hIe"/>
+                                </constraints>
+                                <state key="normal" image="high"/>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="kdp-O5-Irv">
+                                <rect key="frame" x="0.0" y="9" width="375" height="177"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="5e5-Fv-thO" firstAttribute="centerX" secondItem="dX3-pV-Tm4" secondAttribute="centerX" id="1fp-bL-4ux"/>
                             <constraint firstItem="kSB-sc-TyI" firstAttribute="centerX" secondItem="dX3-pV-Tm4" secondAttribute="centerX" id="AaR-Oh-txG"/>
-                            <constraint firstItem="5e5-Fv-thO" firstAttribute="top" secondItem="HVF-Fr-RfX" secondAttribute="bottom" constant="8" id="C3c-Om-cXe"/>
+                            <constraint firstItem="5e5-Fv-thO" firstAttribute="top" secondItem="HVF-Fr-RfX" secondAttribute="bottom" constant="33" id="C3c-Om-cXe"/>
+                            <constraint firstItem="kdp-O5-Irv" firstAttribute="top" secondItem="NYc-Mw-32F" secondAttribute="top" constant="-11" id="Lek-Z7-ZQ6"/>
+                            <constraint firstItem="NYc-Mw-32F" firstAttribute="trailing" secondItem="kdp-O5-Irv" secondAttribute="trailing" id="QCi-Gb-Oaw"/>
                             <constraint firstItem="HVF-Fr-RfX" firstAttribute="centerX" secondItem="dX3-pV-Tm4" secondAttribute="centerX" id="TNj-iQ-NQD"/>
-                            <constraint firstItem="kSB-sc-TyI" firstAttribute="centerY" secondItem="dX3-pV-Tm4" secondAttribute="centerY" id="heM-XK-CKu"/>
-                            <constraint firstItem="HVF-Fr-RfX" firstAttribute="top" secondItem="kSB-sc-TyI" secondAttribute="bottom" constant="7.5" id="mlE-VA-zZe"/>
+                            <constraint firstItem="l77-4X-ilr" firstAttribute="bottom" secondItem="NYc-Mw-32F" secondAttribute="bottom" id="aq3-ys-Nfh"/>
+                            <constraint firstItem="l77-4X-ilr" firstAttribute="leading" secondItem="NYc-Mw-32F" secondAttribute="leading" id="gTf-f5-iXn"/>
+                            <constraint firstItem="kSB-sc-TyI" firstAttribute="centerY" secondItem="dX3-pV-Tm4" secondAttribute="centerY" constant="-87.5" id="heM-XK-CKu"/>
+                            <constraint firstItem="l77-4X-ilr" firstAttribute="trailing" secondItem="NYc-Mw-32F" secondAttribute="trailing" id="mdH-S0-Zkf"/>
+                            <constraint firstItem="HVF-Fr-RfX" firstAttribute="top" secondItem="kSB-sc-TyI" secondAttribute="bottom" constant="34" id="mlE-VA-zZe"/>
+                            <constraint firstItem="kdp-O5-Irv" firstAttribute="leading" secondItem="NYc-Mw-32F" secondAttribute="leading" id="oA0-RA-Dee"/>
+                            <constraint firstItem="kSB-sc-TyI" firstAttribute="top" secondItem="kdp-O5-Irv" secondAttribute="bottom" constant="30" id="obC-ga-aWG"/>
+                            <constraint firstItem="l77-4X-ilr" firstAttribute="top" secondItem="dX3-pV-Tm4" secondAttribute="top" id="sFp-TR-TRC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NYc-Mw-32F"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="qku-ux-3TM"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="multiPlayerButton" destination="HVF-Fr-RfX" id="9Mj-E8-FeT"/>
                         <outlet property="singlePlayerButton" destination="kSB-sc-TyI" id="SDT-nT-gEr"/>
@@ -77,11 +110,19 @@
         <scene sceneID="t0e-Hs-NAn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="WmQ-GE-GIb" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7bK-rl-BPo">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gH0-Ej-bC7">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="URq-hY-BJh" kind="relationship" relationship="rootViewController" id="Jo9-NP-UTT"/>
                     </connections>
@@ -91,4 +132,10 @@
             <point key="canvasLocation" x="341.60000000000002" y="118.29085457271366"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="high" width="766" height="194"/>
+        <image name="logo" width="632" height="306"/>
+        <image name="multi" width="766" height="194"/>
+        <image name="single" width="766" height="194"/>
+    </resources>
 </document>
