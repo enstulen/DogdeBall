@@ -22,6 +22,7 @@
 		5A6812E8204D3AA900B1B6BE /* Dogde_BallUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6812E7204D3AA900B1B6BE /* Dogde_BallUITests.swift */; };
 		5A6812F6204D3B7000B1B6BE /* GameElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6812F5204D3B7000B1B6BE /* GameElements.swift */; };
 		5A6812F8204D482D00B1B6BE /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6812F7204D482D00B1B6BE /* GameOverScene.swift */; };
+		75E226E7207D05CD00EBD344 /* PauseModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E226E6207D05CD00EBD344 /* PauseModalViewController.swift */; };
 		EC76D0F9207CD81400A84CFE /* ObstacleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76D0F7207CD81300A84CFE /* ObstacleRow.swift */; };
 		EC76D0FA207CD81400A84CFE /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76D0F8207CD81300A84CFE /* Obstacle.swift */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,7 @@
 		5A6812E9204D3AA900B1B6BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A6812F5204D3B7000B1B6BE /* GameElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameElements.swift; sourceTree = "<group>"; };
 		5A6812F7204D482D00B1B6BE /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		75E226E6207D05CD00EBD344 /* PauseModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseModalViewController.swift; sourceTree = "<group>"; };
 		EC76D0F7207CD81300A84CFE /* ObstacleRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleRow.swift; sourceTree = "<group>"; };
 		EC76D0F8207CD81300A84CFE /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,6 +143,7 @@
 				5A6812F5204D3B7000B1B6BE /* GameElements.swift */,
 				5A6812F7204D482D00B1B6BE /* GameOverScene.swift */,
 				5A30A89F207BB3D7000315F3 /* MainMenuViewController.swift */,
+				75E226E6207D05CD00EBD344 /* PauseModalViewController.swift */,
 			);
 			path = "Dogde Ball";
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				5A30A8A0207BB3D7000315F3 /* MainMenuViewController.swift in Sources */,
 				EC76D0FA207CD81400A84CFE /* Obstacle.swift in Sources */,
 				5A6812F8204D482D00B1B6BE /* GameOverScene.swift in Sources */,
+				75E226E7207D05CD00EBD344 /* PauseModalViewController.swift in Sources */,
 				5A6812F6204D3B7000B1B6BE /* GameElements.swift in Sources */,
 				5A6812C8204D3AA900B1B6BE /* GameScene.swift in Sources */,
 				5A581B552056A022001979E4 /* MultiPlayerNetworking.swift in Sources */,
@@ -476,7 +480,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R4BG54K3KD;
+				DEVELOPMENT_TEAM = 5V835P4U52;
 				INFOPLIST_FILE = "Dogde Ball/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -495,7 +499,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R4BG54K3KD;
+				DEVELOPMENT_TEAM = 5V835P4U52;
 				INFOPLIST_FILE = "Dogde Ball/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
