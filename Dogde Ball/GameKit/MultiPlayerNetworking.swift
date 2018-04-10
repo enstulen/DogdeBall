@@ -13,7 +13,7 @@ protocol MultiplayerNetworkingProtocol: class {
     func matchEnded()
     func setCurrentPlayerIndex(index :Int)
     func movePlayerAtIndex(index: Int, movePercent: Float)
-    func showGameOver(localPlayerWin: Bool)
+    func showGameOver(localPlayerWin: Bool?)
 }
 
 enum GameState : Int {
@@ -92,8 +92,12 @@ class MultiPlayerNetworking: NSObject, GameKitHelperDelegate {
         isPlayer1 = false
         receivedAllRandomNumbers = false
         orderOfPlayers = [RandomNumberDetails]()
-        orderOfPlayers.append(RandomNumberDetails(playerId:
-            GKLocalPlayer.localPlayer().playerID!, randomNumber: ourRandomNumber))
+        if let playerID = GKLocalPlayer.localPlayer().playerID {
+            orderOfPlayers.append(RandomNumberDetails(playerId: playerID, randomNumber: ourRandomNumber))
+        } else {
+            print("Could not get playerID")
+        }
+
         super.init()
         print("MultiPlayerNetworking INIT")
         
@@ -123,7 +127,6 @@ class MultiPlayerNetworking: NSObject, GameKitHelperDelegate {
     }
     
     func sendRandomNumber() {
-        
         var message = MessageRandomNumber(message: Message(messageType: MessageType.RandomNumber), randomNumber: ourRandomNumber)
         let data = NSData(bytes: &message, length: MemoryLayout<MessageRandomNumber>.size)
         send(data: data)
@@ -184,9 +187,7 @@ class MultiPlayerNetworking: NSObject, GameKitHelperDelegate {
     }
     
     func processReceivedRandomNumber(randomNumberDetails: RandomNumberDetails) {
-        //1
         orderOfPlayers.append(randomNumberDetails)
-        //2
         orderOfPlayers.sort(by: { $0.randomNumber < $1.randomNumber })
 
         if allRandomNumbersAreReceived() {
@@ -249,29 +250,19 @@ class MultiPlayerNetworking: NSObject, GameKitHelperDelegate {
             let messageMove = data.withUnsafeBytes({ (ptr: UnsafePointer<MessageMove>) -> MessageMove in
                 return ptr.pointee
             })
-            print("recieve \(messageMove.movePercent)")
             self.delegate?.movePlayerAtIndex(index: self.indexForPlayer(playerId: playerID)!, movePercent: messageMove.movePercent)
         } else if message.messageType == MessageType.GameOver {
         
             let messageGameOver = data.withUnsafeBytes({ (ptr: UnsafePointer<MessageGameOver>) -> MessageGameOver in
                 return ptr.pointee
             })
-            
-            if isLocalPlayerPlayer1() == true {
-                if (messageGameOver.player1Won == true){
-                    delegate?.showGameOver(localPlayerWin: true)
-                }else {
-                    delegate?.showGameOver(localPlayerWin: false)
-                }
-            } else {
-                if (messageGameOver.player1Won == true){
-                    delegate?.showGameOver(localPlayerWin: false)
-                }else {
-                    delegate?.showGameOver(localPlayerWin: true)
-                }
-            }
-            print("game over, player 1 : \(messageGameOver.player1Won)")
 
+            if (messageGameOver.player1Won == true){
+                delegate?.showGameOver(localPlayerWin: false)
+            }else {
+                delegate?.showGameOver(localPlayerWin: true)
+            }
+            
         }
  
     }
