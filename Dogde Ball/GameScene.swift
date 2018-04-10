@@ -10,21 +10,27 @@ import SpriteKit
 import GameplayKit
 
 enum RowType: Int {
-    case oneS = 0
-    case oneM = 1
-    case oneL = 2
-    case twoS = 3
-    case twoM = 4
-    case threeS = 5
-    case sAndM = 6
-    case mAndS = 7
-    case oneMLeft = 8
-    case oneLLeft = 9
-    case oneMRight = 10
-    case oneLRight = 11
-    case xSAndL = 12
-    case lAndXs = 13
-    case twoXsAndM = 14
+    //very easy:
+    case oneM = 0
+    case oneL = 1
+    case oneMRight = 2
+    case oneLRight = 3
+    
+    //easy:
+    case oneMLeft = 4
+    case oneLLeft = 5
+    case twoS = 6
+    
+    //medium:
+    case twoM = 7
+    case sAndM = 8
+    case mAndS = 9
+    
+    //hard:
+    case threeS = 10
+    case xSAndL = 11
+    case lAndXs = 12
+    case twoXsAndM = 13
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -61,9 +67,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    func randomRange(_ range:Range<Int>) -> Int
+    {
+        return range.lowerBound + Int(arc4random_uniform(UInt32(range.upperBound - range.lowerBound)))
+    }
+    
     func addRandomRow() {
-        let randomNumber = Int(arc4random_uniform(15))
-            
+        let playingTime = calculatePlayingTimeInMilliseconds()
+        var randomNumber = 0
+        
+        if (playingTime < 5000) {
+            randomNumber = Int(arc4random_uniform(4)) //only easy first 5 sec
+        } else if (playingTime < 10000) {
+            randomNumber = Int(arc4random_uniform(7)) //harder obstacles after 5 seconds
+        } else if (playingTime < 15000) {
+            randomNumber = Int(arc4random_uniform(10)) //even harder obstacles after 10 seconds
+        } else if (playingTime < 20000) {
+            randomNumber = randomRange(4..<10) //no very esay ones after 15 seconds
+        } else {
+            randomNumber = randomRange(7..<14) //only medium and hard obstacles after 20 seconds
+        }
+        
         switch randomNumber {
         case 0:
             addRow(type: RowType(rawValue: 0)!)
@@ -107,9 +131,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case 13:
             addRow(type: RowType(rawValue: 13)!)
             break
-        case 14:
-            addRow(type: RowType(rawValue: 14)!)
-            break
         default:
             break
         }
@@ -118,6 +139,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var lastUpdateTimeInterval = TimeInterval()
     var lastYieldTimeInterval = TimeInterval()
+    var startTime = DispatchTime.now()
     
     func updateWithTimeSinceLastUpdate(timeSinceLastUpdate: CFTimeInterval) {
         lastYieldTimeInterval += timeSinceLastUpdate
@@ -125,6 +147,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             lastYieldTimeInterval = 0
             addRandomRow()
         }
+    }
+    
+    func calculatePlayingTimeInMilliseconds() -> UInt64 {
+        return (DispatchTime.now().rawValue - startTime.rawValue) / 1_000_000
     }
     
     
@@ -136,7 +162,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             timeSinceLastUpdate = 1/60
             lastUpdateTimeInterval = currentTime
         }
-        
         updateWithTimeSinceLastUpdate(timeSinceLastUpdate: timeSinceLastUpdate)
         
         

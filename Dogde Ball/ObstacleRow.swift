@@ -11,16 +11,10 @@ import SpriteKit
 class ObstacleRow {
     
     var obstacles: [Obstacle]
-    var difficulty: Int!
     
     init(type: RowType, frameSize: CGSize) {
         obstacles = []
-        difficulty = 0
         setObstacles(type: type, frameSize: frameSize)
-    }
-    
-    public func getDifficulty() -> Int {
-        return self.difficulty
     }
     
     public func getObstacles() -> [Obstacle] {
@@ -29,10 +23,6 @@ class ObstacleRow {
     
     private func setObstacles(type: RowType, frameSize: CGSize) {
         switch type {
-        case .oneS:
-            obstacles = [Obstacle(type: .Small, frameSize: frameSize)]
-            obstacles[0].setXPosition(xPos: frameSize.width / 2)
-            break
             
         case .oneM:
             obstacles = [Obstacle(type: .Medium, frameSize: frameSize)]
@@ -48,7 +38,7 @@ class ObstacleRow {
             let obst1 = Obstacle(type: .Small, frameSize: frameSize)
             let obst2 = Obstacle(type: .Small, frameSize: frameSize)
             obst1.setXPosition(xPos: obst1.size.width / 2)
-            obst2.setXPosition(xPos: frameSize.width - obst2.size.width)
+            obst2.setXPosition(xPos: frameSize.width - obst2.size.width/2)
             obstacles = [obst1, obst2]
             break
             
@@ -58,7 +48,6 @@ class ObstacleRow {
             obst1.setXPosition(xPos: obst1.size.width / 2)
             obst2.setXPosition(xPos: frameSize.width - obst2.size.width / 2)
             obstacles = [obst1, obst2]
-            difficulty = 1
             break
             
         case .threeS:
@@ -69,7 +58,6 @@ class ObstacleRow {
             obst2.setXPosition(xPos: frameSize.width - obst2.size.width / 2) // right
             obst3.setXPosition(xPos: frameSize.width / 2) // center
             obstacles = [obst1, obst2, obst3]
-            difficulty = 1
             break
             
         case .sAndM:
@@ -78,7 +66,6 @@ class ObstacleRow {
             obst1.setXPosition(xPos: obst1.size.width / 2)
             obst2.setXPosition(xPos: frameSize.width - obst2.size.width / 2)
             obstacles = [obst1, obst2]
-            difficulty = 1
             break
             
         case .mAndS:
@@ -87,7 +74,6 @@ class ObstacleRow {
             obst1.setXPosition(xPos: obst1.size.width / 2)
             obst2.setXPosition(xPos: frameSize.width - obst2.size.width / 2)
             obstacles = [obst1, obst2]
-            difficulty = 1
             break
             
         case .oneMLeft:
@@ -116,7 +102,6 @@ class ObstacleRow {
             obst1.setXPosition(xPos: obst1.size.width / 2)
             obst2.setXPosition(xPos: frameSize.width - obst2.size.width / 2)
             obstacles = [obst1, obst2]
-            difficulty = 2
             break
            
         case .lAndXs:
@@ -125,7 +110,6 @@ class ObstacleRow {
             obst1.setXPosition(xPos: obst1.size.width / 2)
             obst2.setXPosition(xPos: frameSize.width - obst2.size.width / 2)
             obstacles = [obst1, obst2]
-            difficulty = 2
             break
         
         case .twoXsAndM:
@@ -137,7 +121,6 @@ class ObstacleRow {
             obst2.setXPosition(xPos: frameSize.width - obst2.size.width / 2) // right
             obst3.setXPosition(xPos: frameSize.width / 2) // center
             obstacles = [obst1, obst2, obst3]
-            difficulty = 2
             break
         }
     }

@@ -45,7 +45,7 @@ class Obstacle: SKSpriteNode {
             self.size.width = frameSize.width * 0.2
             break
         case .Medium:
-            self.size.width = frameSize.width * 0.35
+            self.size.width = frameSize.width * 0.4
             break
         case .Large:
             self.size.width = frameSize.width * 0.75
