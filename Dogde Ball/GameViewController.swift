@@ -85,6 +85,15 @@ class GameViewController: UIViewController {
     }
     
     
+    @IBAction func pauseSingleplayer(_ sender: Any) {
+        
+        //gameScene.view?.isPaused = true
+        gameScene.scene?.view?.isPaused = true
+        gameView.scene?.view?.isPaused = true
+        self.performSegue(withIdentifier: "pauseSegue", sender: self)
+    }
+    
+    
     override var shouldAutorotate: Bool {
         return true
     }
