@@ -79,7 +79,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
             addPlayer2()
         }else {
             addScoreLabel()
-            scheduledTimerWithTimeInterval()
+            //scheduledTimerWithTimeInterval()
         }
     }
     
@@ -204,7 +204,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
         return (DispatchTime.now().rawValue - startTime.rawValue) / 1_000_000
     }
     
-    
+    var gap = 0
     override func update(_ currentTime: TimeInterval) {
         var timeSinceLastUpdate = currentTime - lastUpdateTimeInterval
         lastUpdateTimeInterval = currentTime
@@ -213,7 +213,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
             lastUpdateTimeInterval = currentTime
         }
         updateWithTimeSinceLastUpdate(timeSinceLastUpdate: timeSinceLastUpdate)
-        
+        if gap >= 50 {
+            updateCounting()
+            gap = 0
+        }
+        gap+=1
     }
     
     
@@ -252,11 +256,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
         
     }
     
-    func scheduledTimerWithTimeInterval(){
+    /*func scheduledTimerWithTimeInterval(){
         var timer = Timer()
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
-    }
+    }*/
     
     @objc func updateCounting(){
         score = score + 1
