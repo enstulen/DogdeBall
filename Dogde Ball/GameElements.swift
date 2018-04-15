@@ -22,7 +22,6 @@ extension GameScene {
         player.fillColor = UIColor(red:0.25, green:0.99, blue:0.99, alpha:1.00)
         player.strokeColor = UIColor.white
         player.lineWidth = 5
-        //player = SKSpriteNode(color: UIColor.red, size: CGSize(width: 50, height: 50))
         player.position = CGPoint(x: 25, y: 400)
         player.name = "PLAYER"
         player.physicsBody?.isDynamic = false
@@ -46,17 +45,28 @@ extension GameScene {
     }
     
     func addPlayer2(){
-        player2 = SKSpriteNode(color: UIColor.blue, size: CGSize(width: 50, height: 50))
-        player2.position = CGPoint(x: 25, y: 350)
+        player2 = SKShapeNode(circleOfRadius: 25)
+        player2.fillColor = UIColor(red:0.95, green:0.13, blue:0.39, alpha:1.00)
+        player2.position = CGPoint(x: 25, y: 400)
+        player.strokeColor = UIColor.white
+        player.lineWidth = 5
         player2.name = "PLAYER2"
         player2.physicsBody?.isDynamic = false
-        player2.physicsBody = SKPhysicsBody(rectangleOf: player2.size)
+        player2.physicsBody = SKPhysicsBody(rectangleOf: player2.frame.size)
         player2.physicsBody?.categoryBitMask = CollisionBitMask.Player
         player2.physicsBody?.collisionBitMask = 0
         player2.physicsBody?.contactTestBitMask = CollisionBitMask.Obstacle
         
+        if let thrusterPath = Bundle.main.path(forResource: "ParticleEmitter2", ofType: "sks") {
+            if let thruster = NSKeyedUnarchiver.unarchiveObject(withFile: thrusterPath) as? SKEmitterNode {
+                thruster.xScale = 2
+                thruster.yScale = 2
+                player2.addChild(thruster)
+            }
+        }
+        
         addChild(player2)
-       // players.append(player2)
+        players.append(player2)
 
         initialPlayerPosition = player2.position
     }

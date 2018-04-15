@@ -46,7 +46,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
     
     var players = [SKShapeNode]()
     var player: SKShapeNode!
-    var player2: SKSpriteNode!
+    var player2: SKShapeNode!
     var scoreLabel: SKLabelNode!
     var networkingEngine: MultiPlayerNetworking!
     var currentIndex: Int!
@@ -213,7 +213,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
             lastUpdateTimeInterval = currentTime
         }
         updateWithTimeSinceLastUpdate(timeSinceLastUpdate: timeSinceLastUpdate)
-        if gap >= 50 {
+        if gap >= 10 {
             updateCounting()
             gap = 0
         }
@@ -256,15 +256,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
         
     }
     
-    /*func scheduledTimerWithTimeInterval(){
-        var timer = Timer()
-        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
-    }*/
     
     @objc func updateCounting(){
         score = score + 1
-        scoreLabel.text = String(score)
+        if scoreLabel != nil {
+            scoreLabel.text = String(score)
+        }
     }
     
     func setCurrentPlayerIndex(index :Int) {

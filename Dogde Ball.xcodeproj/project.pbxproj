@@ -23,6 +23,7 @@
 		5A6812F6204D3B7000B1B6BE /* GameElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6812F5204D3B7000B1B6BE /* GameElements.swift */; };
 		5A6812F8204D482D00B1B6BE /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6812F7204D482D00B1B6BE /* GameOverScene.swift */; };
 		5AA92E7F2083473F002C1CAF /* ParticleEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5AA92E7D2083473F002C1CAF /* ParticleEmitter.sks */; };
+		5AA92E82208378F2002C1CAF /* ParticleEmitter2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5AA92E81208378F2002C1CAF /* ParticleEmitter2.sks */; };
 		75E226E7207D05CD00EBD344 /* PauseModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E226E6207D05CD00EBD344 /* PauseModalViewController.swift */; };
 		EC76D0F9207CD81400A84CFE /* ObstacleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76D0F7207CD81300A84CFE /* ObstacleRow.swift */; };
 		EC76D0FA207CD81400A84CFE /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76D0F8207CD81300A84CFE /* Obstacle.swift */; };
@@ -68,6 +69,7 @@
 		5A6812F5204D3B7000B1B6BE /* GameElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameElements.swift; sourceTree = "<group>"; };
 		5A6812F7204D482D00B1B6BE /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		5AA92E7D2083473F002C1CAF /* ParticleEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ParticleEmitter.sks; sourceTree = "<group>"; };
+		5AA92E81208378F2002C1CAF /* ParticleEmitter2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ParticleEmitter2.sks; sourceTree = "<group>"; };
 		75E226E6207D05CD00EBD344 /* PauseModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseModalViewController.swift; sourceTree = "<group>"; };
 		EC76D0F7207CD81300A84CFE /* ObstacleRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleRow.swift; sourceTree = "<group>"; };
 		EC76D0F8207CD81300A84CFE /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
@@ -130,12 +132,12 @@
 		5A6812C0204D3AA900B1B6BE /* Dogde Ball */ = {
 			isa = PBXGroup;
 			children = (
+				5AA92E83208378FF002C1CAF /* Particles */,
 				5A581B5120568A6B001979E4 /* GameKit */,
 				EC76D0F8207CD81300A84CFE /* Obstacle.swift */,
 				EC76D0F7207CD81300A84CFE /* ObstacleRow.swift */,
 				5A6812C1204D3AA900B1B6BE /* AppDelegate.swift */,
 				5A6812C3204D3AA900B1B6BE /* GameScene.sks */,
-				5AA92E7D2083473F002C1CAF /* ParticleEmitter.sks */,
 				5A6812C5204D3AA900B1B6BE /* Actions.sks */,
 				5A6812C7204D3AA900B1B6BE /* GameScene.swift */,
 				5A6812C9204D3AA900B1B6BE /* GameViewController.swift */,
@@ -167,6 +169,15 @@
 				5A6812E9204D3AA900B1B6BE /* Info.plist */,
 			);
 			path = "Dogde BallUITests";
+			sourceTree = "<group>";
+		};
+		5AA92E83208378FF002C1CAF /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				5AA92E7D2083473F002C1CAF /* ParticleEmitter.sks */,
+				5AA92E81208378F2002C1CAF /* ParticleEmitter2.sks */,
+			);
+			path = Particles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +293,7 @@
 				5A6812D2204D3AA900B1B6BE /* LaunchScreen.storyboard in Resources */,
 				5AA92E7F2083473F002C1CAF /* ParticleEmitter.sks in Resources */,
 				5A6812C6204D3AA900B1B6BE /* Actions.sks in Resources */,
+				5AA92E82208378F2002C1CAF /* ParticleEmitter2.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
