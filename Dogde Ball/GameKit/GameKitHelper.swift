@@ -15,7 +15,7 @@ protocol GameKitHelperDelegate: class {
     func match(match: GKMatch, didReceive data: Data, fromPlayer playerID: String)
 }
 
-class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelegate {
+class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelegate, GKGameCenterControllerDelegate {
     
     var authenticationViewController: UIViewController!
     var lastError: Error!
@@ -72,7 +72,6 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
 
         GKPlayer.loadPlayers(forIdentifiers: playerIDs as! [String]) { (players: [GKPlayer]?, error: Error?) in
             if error != nil {
-                print("Error retrieving player info: \(error?.localizedDescription)")
                 self.matchStarted = false
                 self.delegate?.matchEnded()
             }
@@ -201,6 +200,38 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
         if let aMmvc = mmvc {
             viewController?.present(aMmvc, animated: true) {() -> Void in }
         }
+    }
+    
+    func reportScore(score: Int64,
+                     forLeaderBoardId leaderBoardId: String) {
+        
+        if !enableGameCenter {
+            print("Local player is not authenticated")
+            return
+        }
+        
+        let scoreReporter =
+            GKScore(leaderboardIdentifier: leaderBoardId)
+        scoreReporter.value = score
+        scoreReporter.context = 0
+        
+        let scores = [scoreReporter]
+        
+        GKScore.report(scores) {(error) in
+            self.lastError = error
+        }
+    }
+    
+    func presentHighscore(viewController: UIViewController){
+        let gameCenterViewController = GKGameCenterViewController()
+        gameCenterViewController.gameCenterDelegate = self
+        gameCenterViewController.viewState = .leaderboards
+        viewController.present(gameCenterViewController, animated: true, completion: nil)
+    }
+    
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        print("finish")
+        gameCenterViewController.dismiss(animated: true, completion: nil)
     }
 
 

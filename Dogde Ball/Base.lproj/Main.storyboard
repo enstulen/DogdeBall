@@ -132,7 +132,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kSB-sc-TyI">
-                                <rect key="frame" x="82" y="154" width="210" height="60"/>
+                                <rect key="frame" x="82" y="314" width="210" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="210" id="mfo-md-M1B"/>
                                     <constraint firstAttribute="height" constant="60" id="nnV-3j-yEv"/>
@@ -143,7 +143,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVF-Fr-RfX">
-                                <rect key="frame" x="82" y="248" width="210" height="60"/>
+                                <rect key="frame" x="82" y="408" width="210" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="210" id="JzB-3M-UEA"/>
                                     <constraint firstAttribute="height" constant="60" id="bci-QH-okw"/>
@@ -154,34 +154,38 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5e5-Fv-thO">
-                                <rect key="frame" x="82" y="341" width="210" height="60"/>
+                                <rect key="frame" x="82" y="501" width="210" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="DdH-Iu-eGI"/>
                                     <constraint firstAttribute="width" constant="210" id="JcZ-pN-hIe"/>
                                 </constraints>
                                 <state key="normal" image="highscore"/>
+                                <connections>
+                                    <action selector="highscoreButtonPressed:" destination="URq-hY-BJh" eventType="touchUpInside" id="ViF-AB-6wq"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DODGEBALL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDQ-Wf-gQC">
-                                <rect key="frame" x="114" y="47" width="146" height="40"/>
-                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="40"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="4kb-dq-auy">
+                                <rect key="frame" x="87" y="80" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="mBr-zx-Rub"/>
+                                    <constraint firstAttribute="width" constant="200" id="xAN-sY-Rim"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="5e5-Fv-thO" firstAttribute="centerX" secondItem="dX3-pV-Tm4" secondAttribute="centerX" id="1fp-bL-4ux"/>
+                            <constraint firstItem="4kb-dq-auy" firstAttribute="centerX" secondItem="dX3-pV-Tm4" secondAttribute="centerX" id="9VU-ej-suo"/>
                             <constraint firstItem="kSB-sc-TyI" firstAttribute="centerX" secondItem="dX3-pV-Tm4" secondAttribute="centerX" id="AaR-Oh-txG"/>
                             <constraint firstItem="5e5-Fv-thO" firstAttribute="top" secondItem="HVF-Fr-RfX" secondAttribute="bottom" constant="33" id="C3c-Om-cXe"/>
                             <constraint firstItem="HVF-Fr-RfX" firstAttribute="centerX" secondItem="dX3-pV-Tm4" secondAttribute="centerX" id="TNj-iQ-NQD"/>
-                            <constraint firstItem="BDQ-Wf-gQC" firstAttribute="top" secondItem="NYc-Mw-32F" secondAttribute="top" constant="27" id="VIE-Yl-0DN"/>
+                            <constraint firstItem="4kb-dq-auy" firstAttribute="top" secondItem="NYc-Mw-32F" secondAttribute="top" constant="60" id="aDP-Ag-71N"/>
                             <constraint firstItem="l77-4X-ilr" firstAttribute="bottom" secondItem="NYc-Mw-32F" secondAttribute="bottom" id="aq3-ys-Nfh"/>
                             <constraint firstItem="l77-4X-ilr" firstAttribute="leading" secondItem="NYc-Mw-32F" secondAttribute="leading" id="gTf-f5-iXn"/>
-                            <constraint firstItem="kSB-sc-TyI" firstAttribute="centerY" secondItem="dX3-pV-Tm4" secondAttribute="centerY" constant="-149.5" id="heM-XK-CKu"/>
+                            <constraint firstItem="kSB-sc-TyI" firstAttribute="centerY" secondItem="dX3-pV-Tm4" secondAttribute="centerY" constant="10.5" id="heM-XK-CKu"/>
                             <constraint firstItem="l77-4X-ilr" firstAttribute="trailing" secondItem="NYc-Mw-32F" secondAttribute="trailing" id="mdH-S0-Zkf"/>
                             <constraint firstItem="HVF-Fr-RfX" firstAttribute="top" secondItem="kSB-sc-TyI" secondAttribute="bottom" constant="34" id="mlE-VA-zZe"/>
-                            <constraint firstItem="BDQ-Wf-gQC" firstAttribute="centerX" secondItem="dX3-pV-Tm4" secondAttribute="centerX" id="qCJ-H9-LfG"/>
                             <constraint firstItem="l77-4X-ilr" firstAttribute="top" secondItem="dX3-pV-Tm4" secondAttribute="top" id="sFp-TR-TRC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NYc-Mw-32F"/>
@@ -191,6 +195,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="highscoreButton" destination="5e5-Fv-thO" id="Elj-zO-AH4"/>
                         <outlet property="multiPlayerButton" destination="HVF-Fr-RfX" id="9Mj-E8-FeT"/>
                         <outlet property="singlePlayerButton" destination="kSB-sc-TyI" id="SDT-nT-gEr"/>
                     </connections>
@@ -228,6 +233,7 @@
     <resources>
         <image name="exit" width="230" height="80"/>
         <image name="highscore" width="230" height="80"/>
+        <image name="logo" width="1024" height="1024"/>
         <image name="multi" width="230" height="80"/>
         <image name="pause" width="40" height="40"/>
         <image name="resume" width="230" height="80"/>

@@ -22,7 +22,7 @@ extension GameScene {
         player.fillColor = UIColor(red:0.25, green:0.99, blue:0.99, alpha:1.00)
         player.strokeColor = UIColor.white
         player.lineWidth = 5
-        player.position = CGPoint(x: 25, y: 400)
+        player.position = CGPoint(x: 25, y: 300)
         player.name = "PLAYER"
         player.physicsBody?.isDynamic = false
         player.physicsBody = SKPhysicsBody(rectangleOf: player.frame.size)
@@ -47,9 +47,9 @@ extension GameScene {
     func addPlayer2(){
         player2 = SKShapeNode(circleOfRadius: 25)
         player2.fillColor = UIColor(red:0.95, green:0.13, blue:0.39, alpha:1.00)
-        player2.position = CGPoint(x: 25, y: 400)
-        player.strokeColor = UIColor.white
-        player.lineWidth = 5
+        player2.position = CGPoint(x: 25, y: 300)
+        player2.strokeColor = UIColor.white
+        player2.lineWidth = 5
         player2.name = "PLAYER2"
         player2.physicsBody?.isDynamic = false
         player2.physicsBody = SKPhysicsBody(rectangleOf: player2.frame.size)

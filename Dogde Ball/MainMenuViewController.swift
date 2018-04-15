@@ -13,6 +13,11 @@ import GameKit
 
 class MainMenuViewController: UIViewController {
     
+    @IBAction func highscoreButtonPressed(_ sender: Any) {
+        GameKitHelper.sharedGameKitHelper.presentHighscore(viewController: self)
+ 
+    }
+    @IBOutlet weak var highscoreButton: UIButton!
     @IBAction func singlePlayerButtonPressed(_ sender: Any) {
         if let gameViewController = storyboard?.instantiateViewController(withIdentifier: "gameViewController") as? GameViewController {
             navigationController?.pushViewController(gameViewController, animated: false)

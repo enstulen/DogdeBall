@@ -41,7 +41,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
     
     
     var score: Int = 0
-    var highScore: Int = 0
     var isMultiPlayer = false
     
     var players = [SKShapeNode]()
@@ -247,10 +246,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
     }
     
     func showGameOver(localPlayerWin: Bool?) {
-        if(score>=highScore){
-            highScore = score
-        }
-        let transition = SKTransition.fade(withDuration: 0.5)
+        GameKitHelper.sharedGameKitHelper.reportScore(score: Int64(score), forLeaderBoardId: "DogdeballLeaderBoard")
+        //GameKitHelper.sharedGameKitHelper.reportScore(score: Int64(score), forLeaderBoardId: "DogdeballLeaderBoardRecent")
         let gameOverScene = GameOverScene(size: self.size, score: score, localPlayerWin: localPlayerWin)
         self.view?.presentScene(gameOverScene)
         

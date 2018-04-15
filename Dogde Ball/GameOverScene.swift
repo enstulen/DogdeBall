@@ -65,7 +65,6 @@ class GameOverScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let transition = SKTransition.fade(withDuration: 0.5)
         let gameScene = GameScene(size: self.size)
         gameScene.addElements()
         
