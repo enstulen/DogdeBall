@@ -23,12 +23,11 @@ class PauseModalViewController: UIViewController {
 
 
     @IBAction func continueGame(_ sender: Any) {
-       
-        dismiss(animated: true)
+        self.navigationController?.popViewController(animated: false)
     }
     
     @IBAction func exit(_ sender: Any) {
-        self.performSegue(withIdentifier: "exitSegue", sender: self)
+        self.navigationController?.popToRootViewController(animated: false)
     }
     
 }

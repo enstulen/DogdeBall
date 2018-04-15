@@ -44,8 +44,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
     var highScore: Int = 0
     var isMultiPlayer = false
     
-    var players = [SKSpriteNode]()
-    var player: SKSpriteNode!
+    var players = [SKShapeNode]()
+    var player: SKShapeNode!
     var player2: SKSpriteNode!
     var scoreLabel: SKLabelNode!
     var networkingEngine: MultiPlayerNetworking!

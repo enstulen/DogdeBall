@@ -72,7 +72,10 @@ class GameViewController: UIViewController {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
                 // Set the scale mode to scale to fit the window
+                view.ignoresSiblingOrder = false
+
                 scene.scaleMode = .aspectFill
+                view.backgroundColor = UIColor.red
                 // Present the scene
                 view.presentScene(scene)
                 if isMultiPlayer {
@@ -83,7 +86,6 @@ class GameViewController: UIViewController {
 
             }
             
-            view.ignoresSiblingOrder = true
             
             view.showsFPS = true
             view.showsNodeCount = true
@@ -108,10 +110,9 @@ class GameViewController: UIViewController {
                 scene.view?.isPaused = true
             }
         }
-        //gameScene.view?.isPaused = true
-        //gameScene.scene?.view?.isPaused = true
-        //gameView.scene?.view?.isPaused = true
-        self.performSegue(withIdentifier: "pauseSegue", sender: self)
+        if let pauseViewController = storyboard?.instantiateViewController(withIdentifier: "pauseViewController") as? PauseModalViewController {
+            navigationController?.pushViewController(pauseViewController, animated: false)
+        }
     }
     
     

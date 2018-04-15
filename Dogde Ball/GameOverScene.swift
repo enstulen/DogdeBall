@@ -38,7 +38,8 @@ class GameOverScene: SKScene {
             defaults.set(score, forKey: "HighScore")
         }
         
-        let label = SKLabelNode(fontNamed: "Optima-ExtraBlack")
+        let label = SKLabelNode(fontNamed: "DINCondensed-Bold")
+        label.fontSize = 100
         label.text = message
         label.fontColor = SKColor.white
         label.position = CGPoint(x: 0.5*self.size.width, y: 0.75*self.size.height)
@@ -46,13 +47,15 @@ class GameOverScene: SKScene {
         
         //If its singleplayer, show the score
         if localPlayerWin == nil {
-            let scoreLabel = SKLabelNode(fontNamed: "Optima-ExtraBlack")
+            let scoreLabel = SKLabelNode(fontNamed: "DINCondensed-Bold")
+            scoreLabel.fontSize = 70
             scoreLabel.text = "Score: " + String(score)
             scoreLabel.fontColor = SKColor.white
             scoreLabel.position = CGPoint(x: 0.5*self.size.width, y: 0.5*self.size.height)
             addChild(scoreLabel)
             
-            let highScoreLabel = SKLabelNode(fontNamed: "Optima-ExtraBlack")
+            let highScoreLabel = SKLabelNode(fontNamed: "DINCondensed-Bold")
+            highScoreLabel.fontSize = 70
             highScoreLabel.text = "High Score: " + String(defaults.integer(forKey: "HighScore"))
             highScoreLabel.fontColor = SKColor.white
             highScoreLabel.position = CGPoint(x: 0.5*self.size.width, y: 0.4*self.size.height)

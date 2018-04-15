@@ -18,14 +18,26 @@ struct CollisionBitMask {
 extension GameScene {
     
     func addPlayer(){
-        player = SKSpriteNode(color: UIColor.red, size: CGSize(width: 50, height: 50))
-        player.position = CGPoint(x: 25, y: 350)
+        player = SKShapeNode(circleOfRadius: 25)
+        player.fillColor = UIColor(red:0.25, green:0.99, blue:0.99, alpha:1.00)
+        player.strokeColor = UIColor.white
+        player.lineWidth = 5
+        //player = SKSpriteNode(color: UIColor.red, size: CGSize(width: 50, height: 50))
+        player.position = CGPoint(x: 25, y: 400)
         player.name = "PLAYER"
         player.physicsBody?.isDynamic = false
-        player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
+        player.physicsBody = SKPhysicsBody(rectangleOf: player.frame.size)
         player.physicsBody?.categoryBitMask = CollisionBitMask.Player
         player.physicsBody?.collisionBitMask = 0
         player.physicsBody?.contactTestBitMask = CollisionBitMask.Obstacle
+        
+        if let thrusterPath = Bundle.main.path(forResource: "ParticleEmitter", ofType: "sks") {
+            if let thruster = NSKeyedUnarchiver.unarchiveObject(withFile: thrusterPath) as? SKEmitterNode {
+                thruster.xScale = 2
+                thruster.yScale = 2
+                player.addChild(thruster)
+            }
+        }
         
         addChild(player)
         players.append(player)
@@ -44,7 +56,7 @@ extension GameScene {
         player2.physicsBody?.contactTestBitMask = CollisionBitMask.Obstacle
         
         addChild(player2)
-        players.append(player2)
+       // players.append(player2)
 
         initialPlayerPosition = player2.position
     }
@@ -71,8 +83,8 @@ extension GameScene {
         scoreLabel.zPosition = 10
         scoreLabel.position = CGPoint(x: 0.9*self.size.width, y: 0.9*self.size.height)
         scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
-        scoreLabel.fontName = "Optima-ExtraBlack"
-        scoreLabel.fontSize = 70
+        scoreLabel.fontName = "DINCondensed-Bold"
+        scoreLabel.fontSize = 90
 
         addChild(scoreLabel)
     }
