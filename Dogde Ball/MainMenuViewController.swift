@@ -49,7 +49,6 @@ class MainMenuViewController: UIViewController {
     @objc func showAuthenticationViewController() {
         let gamekitHelper = GameKitHelper.sharedGameKitHelper
         self.present(gamekitHelper.authenticationViewController, animated: true) {
-            print("halla")
         }
     }
     

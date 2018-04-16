@@ -85,18 +85,12 @@ class GameViewController: UIViewController {
                 scene.addElements()
 
             }
-            
-            
-            view.showsFPS = true
-            view.showsNodeCount = true
         }
         
     }
     
     
     @objc func playerAuthenticated() {
-        print("here1")
-
 
     }
     

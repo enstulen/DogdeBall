@@ -33,7 +33,7 @@ enum RowType: Int {
     case twoXsAndM = 13
 }
 
-class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtocol{    
+class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtocol{
     
     func matchEnded() {
         print("ended")
@@ -78,7 +78,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
             addPlayer2()
         }else {
             addScoreLabel()
-            //scheduledTimerWithTimeInterval()
         }
     }
     
@@ -123,21 +122,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
     }
     
     func addRandomRow() {
-        let playingTime = calculatePlayingTimeInMilliseconds()
+        let playingTime = calculatePlayingTime()
         var randomNumber = 0
-        
-        if (playingTime < 5000) {
-            randomNumber = Int(arc4random_uniform(4)) //only easy first 5 sec
-        } else if (playingTime < 10000) {
-            randomNumber = Int(arc4random_uniform(7)) //harder obstacles after 5 seconds
-        } else if (playingTime < 15000) {
-            randomNumber = Int(arc4random_uniform(10)) //even harder obstacles after 10 seconds
-        } else if (playingTime < 20000) {
-            randomNumber = randomRange(4..<10) //no very esay ones after 15 seconds
+        print(playingTime)
+        if (playingTime < 100) {
+            randomNumber = Int(arc4random_uniform(4)) //only easy
+        } else if (playingTime < 300) {
+            randomNumber = Int(arc4random_uniform(7)) //harder obstacles
+        } else if (playingTime < 500) {
+            randomNumber = Int(arc4random_uniform(10)) //even harder obstacles
+        } else if (playingTime < 800) {
+            randomNumber = randomRange(4..<10) //no very esay ones
         } else {
-            randomNumber = randomRange(7..<14) //only medium and hard obstacles after 20 seconds
+            randomNumber = randomRange(7..<14) //only medium and hard obstacles
         }
         
+        if networkingEngine != nil {
+            if networkingEngine.isPlayer1 {
+                addRowFromRandomNumber(randomNumber: randomNumber)
+                sendRow(randomNumber: randomNumber)
+            } else {
+                return
+            }
+        } else {
+            addRowFromRandomNumber(randomNumber: randomNumber)
+        }
+        
+    }
+    
+    func sendRow(randomNumber: Int) {
+        if networkingEngine != nil {
+            networkingEngine.sendRow(randomNumber: randomNumber)
+        }
+    }
+    
+    func addRowFromRandomNumber(randomNumber: Int){
         switch randomNumber {
         case 0:
             addRow(type: RowType(rawValue: 0)!)
@@ -199,7 +218,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerNetworkingProtoco
         }
     }
     
-    func calculatePlayingTimeInMilliseconds() -> UInt64 {
+    func calculatePlayingTime() -> UInt64 {
         return (DispatchTime.now().rawValue - startTime.rawValue) / 1_000_000
     }
     

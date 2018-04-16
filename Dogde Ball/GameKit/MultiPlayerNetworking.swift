@@ -14,6 +14,7 @@ protocol MultiplayerNetworkingProtocol: class {
     func setCurrentPlayerIndex(index :Int)
     func movePlayerAtIndex(index: Int, movePercent: Float)
     func showGameOver(localPlayerWin: Bool?)
+    func addRowFromRandomNumber(randomNumber: Int)
 }
 
 enum GameState : Int {
@@ -29,6 +30,7 @@ enum MessageType : Int {
     case GameBegin
     case Move
     case GameOver
+    case Row
 }
 
 struct Message {
@@ -47,6 +49,11 @@ struct MessageGameBegin {
 struct MessageMove {
     var message: Message
     var movePercent: Float
+}
+
+struct MessageRow {
+    var message: Message
+    var randomNumber: Int
 }
 
 struct MessageGameOver {
@@ -99,7 +106,6 @@ class MultiPlayerNetworking: NSObject, GameKitHelperDelegate {
         }
 
         super.init()
-        print("MultiPlayerNetworking INIT")
         
     }
     
@@ -150,7 +156,10 @@ class MultiPlayerNetworking: NSObject, GameKitHelperDelegate {
     }
     
     func indexForLocalPlayer() -> Int? {
-        return indexForPlayer(playerId: GKLocalPlayer.localPlayer().playerID!)
+        if let playerID = GKLocalPlayer.localPlayer().playerID {
+            return indexForPlayer(playerId: playerID)
+        }
+        return nil
     }
     
     func indexForPlayer(playerId: String) -> Int? {
@@ -168,7 +177,6 @@ class MultiPlayerNetworking: NSObject, GameKitHelperDelegate {
     
     func matchEnded() {
         print("match ended")
-        
     }
     
     func allRandomNumbersAreReceived() -> Bool {
@@ -192,6 +200,8 @@ class MultiPlayerNetworking: NSObject, GameKitHelperDelegate {
 
         if allRandomNumbersAreReceived() {
             receivedAllRandomNumbers = true
+        } else {
+            print("All random numbers are not recieved")
         }
         
     }
@@ -245,12 +255,19 @@ class MultiPlayerNetworking: NSObject, GameKitHelperDelegate {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "start_multiplayer_game"), object: nil)
             if let localPlayerIndex = indexForLocalPlayer() {
                 delegate?.setCurrentPlayerIndex(index: localPlayerIndex)
+            } else {
+                print("Message active no localPlayerIndex")
             }
         } else if message.messageType == MessageType.Move {
             let messageMove = data.withUnsafeBytes({ (ptr: UnsafePointer<MessageMove>) -> MessageMove in
                 return ptr.pointee
             })
-            self.delegate?.movePlayerAtIndex(index: self.indexForPlayer(playerId: playerID)!, movePercent: messageMove.movePercent)
+            if let playerID = self.indexForPlayer(playerId: playerID) {
+                self.delegate?.movePlayerAtIndex(index: playerID, movePercent: messageMove.movePercent)
+            } else {
+                print("Message move no playerID")
+            }
+        
         } else if message.messageType == MessageType.GameOver {
         
             let messageGameOver = data.withUnsafeBytes({ (ptr: UnsafePointer<MessageGameOver>) -> MessageGameOver in
@@ -263,6 +280,11 @@ class MultiPlayerNetworking: NSObject, GameKitHelperDelegate {
                 delegate?.showGameOver(localPlayerWin: true)
             }
             
+        } else if message.messageType == MessageType.Row {
+            let messageRow = data.withUnsafeBytes({ (ptr: UnsafePointer<MessageRow>) -> MessageRow in
+                return ptr.pointee
+            })
+            delegate?.addRowFromRandomNumber(randomNumber: messageRow.randomNumber)
         }
  
     }
@@ -271,6 +293,12 @@ class MultiPlayerNetworking: NSObject, GameKitHelperDelegate {
         let data = NSData(bytes: &messageMove, length: MemoryLayout<MessageMove>.size)
         send(data: data)
 
+    }
+    
+    func sendRow(randomNumber: Int) {
+        var messageRow = MessageRow(message: Message(messageType: MessageType.Row), randomNumber: randomNumber)
+        let data = NSData(bytes: &messageRow, length: MemoryLayout<MessageRow>.size)
+        send(data: data)
     }
     
     func sendGameOver(player1won: Bool) {

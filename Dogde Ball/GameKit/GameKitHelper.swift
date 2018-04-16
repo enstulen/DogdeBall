@@ -112,7 +112,7 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
     func setLastError(error: Error) {
         self.lastError = error
         if (lastError != nil) {
-            print("GameKitHelper ERROR: " + lastError.localizedDescription)
+            print("GameKitHelper ERROR: ")
         }
 
     }
@@ -144,17 +144,17 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
     //GKMatchDelegate
     
     func match(_ match: GKMatch, didReceive data: Data, fromRemotePlayer player: GKPlayer) {
-        if (match != self.match) {
-            print("match != self.match")
-            return
-        }
+//        if (match != self.match) {
+//            print("match != self.match")
+//            return
+//        }
         delegate?.match(match: match, didReceive: data, fromPlayer: player.playerID!)
     }
     func match(_ match: GKMatch, player: GKPlayer, didChange state: GKPlayerConnectionState) {
-        if (match != self.match){
-            print("match != self.match")
-            return
-        }
+//        if (match != self.match){
+//            print("match != self.match")
+//            return
+//        }
         switch state {
         case .stateConnected:
             //Connected
@@ -176,9 +176,10 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
     
     // The match was unable to be established with any players due to an error.
     func match(_ match: GKMatch, didFailWithError error: Error?) {
-        if (match != self.match) {
-            return
-        }
+        print(error?.localizedDescription)
+//        if (match != self.match) {
+//            return
+//        }
         matchStarted = false
         delegate?.matchEnded()
     }
@@ -230,7 +231,6 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
     }
     
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
-        print("finish")
         gameCenterViewController.dismiss(animated: true, completion: nil)
     }
 
