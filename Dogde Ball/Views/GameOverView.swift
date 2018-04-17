@@ -1,27 +1,18 @@
 //
-//  GameOverScene.swift
+//  GameOverView.swift
 //  Dogde Ball
 //
-//  Created by Morten Stulen on 05.03.2018.
+//  Created by Morten Stulen on 17.04.2018.
 //  Copyright © 2018 Morten Stulen. All rights reserved.
 //
 
-import SpriteKit
+import Foundation
 
-class GameOverScene: SKScene {
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    var isMultiPlayer = false
-    
-    init(size: CGSize, score: Int, localPlayerWin: Bool?) {
-        super.init(size: size)
-        
+extension GameOverScene {
+    func addGameOverElements(){
         self.backgroundColor = SKColor.black
         var message = ""
-
+        
         if localPlayerWin == true {
             message = "YOU WIN"
         } else {
@@ -61,18 +52,5 @@ class GameOverScene: SKScene {
             highScoreLabel.position = CGPoint(x: 0.5*self.size.width, y: 0.4*self.size.height)
             addChild(highScoreLabel)
         }
-
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let gameScene = GameScene(size: self.size)
-        gameScene.addElements()
-        
-        if isMultiPlayer == true {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "go_to_main_menu"), object: self)
-        } else {
-            self.view?.presentScene(gameScene)
-        }
-    }
-    
 }
